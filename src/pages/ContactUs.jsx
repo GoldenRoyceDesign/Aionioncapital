@@ -20,7 +20,7 @@ function ContactUs() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    axios.post('/form', formData)
+    axios.post('https://aionion.onrender.com', formData)
       .then(response => {
         console.log('Message sent:', response.data);
         // Optionally reset the form fields
