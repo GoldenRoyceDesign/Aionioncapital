@@ -46,13 +46,14 @@ function Navigationbar() {
     <Navbar expand="lg" style={{background: 'white'}}>
       <Container>
         <Navbar.Brand>
+          <a href='/'>
           <img
             src={logo}
             width="50"
             height="50"
             className="d-inline-block align-top"
             alt="College Logo"
-          />
+          /></a>
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
