@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Form, Button, Row, Col } from 'react-bootstrap';
+import { Form, Button, Row, Col, Modal } from 'react-bootstrap';
 import axios from 'axios';
 import '../pages/contact.css';  // Assuming you're adding custom styles
 
@@ -11,18 +11,45 @@ function ContactUs() {
     message: ''
   });
 
+  const [errors, setErrors] = useState({});
+  const [showModal, setShowModal] = useState(false);
+  const [modalMessage, setModalMessage] = useState('');
+
+  const validateForm = () => {
+    const newErrors = {};
+    if (!formData.name.trim()) newErrors.name = 'Name is required';
+    if (!formData.email.trim()) newErrors.email = 'Email is required';
+    if (!formData.subject.trim()) newErrors.subject = 'Subject is required';
+    if (!formData.message.trim()) newErrors.message = 'Message is required';
+    return newErrors;
+  };
+
   const handleChange = (e) => {
     setFormData({
       ...formData,
       [e.target.name]: e.target.value
     });
+    setErrors({
+      ...errors,
+      [e.target.name]: ''  // Clear error message for the field
+    });
   };
 
+  
   const handleSubmit = (e) => {
     e.preventDefault();
+
+    const validationErrors = validateForm();
+    if (Object.keys(validationErrors).length > 0) {
+      setErrors(validationErrors);
+      return;
+    }
+    
     axios.post('https://aionion.onrender.com/form', formData)
       .then(response => {
         console.log('Message sent:', response.data);
+        setModalMessage('Your message has been sent successfully!');
+        setShowModal(true); // Show the modal
         // Optionally reset the form fields
         setFormData({
           name: '',
@@ -33,8 +60,12 @@ function ContactUs() {
       })
       .catch(error => {
         console.error('There was an error sending the message!', error);
+        setModalMessage('There was an error sending the message. Please try again later.');
+        setShowModal(true); // Show the modal
       });
   };
+
+  const handleClose = () => setShowModal(false);
 
   return (
     <div className="container mt-5 mb-5">
@@ -80,7 +111,11 @@ function ContactUs() {
                 value={formData.name}
                 onChange={handleChange}
                 placeholder="Enter your name" 
+                isInvalid={!!errors.name}
               />
+              <Form.Control.Feedback type="invalid">
+                {errors.name}
+              </Form.Control.Feedback>
             </Form.Group>
 
             <Form.Group controlId="formEmail" className="mb-3">
@@ -91,7 +126,11 @@ function ContactUs() {
                 value={formData.email}
                 onChange={handleChange}
                 placeholder="Enter your email" 
+                isInvalid={!!errors.email}
               />
+              <Form.Control.Feedback type="invalid">
+                {errors.email}
+              </Form.Control.Feedback>
             </Form.Group>
 
             <Form.Group controlId="formSubject" className="mb-3">
@@ -102,7 +141,11 @@ function ContactUs() {
                 value={formData.subject}
                 onChange={handleChange}
                 placeholder="Subject" 
+                isInvalid={!!errors.subject}
               />
+              <Form.Control.Feedback type="invalid">
+                {errors.subject}
+              </Form.Control.Feedback>
             </Form.Group>
 
             <Form.Group controlId="formMessage" className="mb-3">
@@ -114,7 +157,11 @@ function ContactUs() {
                 value={formData.message}
                 onChange={handleChange}
                 placeholder="Your message" 
+                isInvalid={!!errors.message}
               />
+              <Form.Control.Feedback type="invalid">
+                {errors.message}
+              </Form.Control.Feedback>
             </Form.Group>
 
             <Button variant="primary" type="submit">
@@ -123,6 +170,15 @@ function ContactUs() {
           </Form>
         </Col>
       </Row>
+
+      {/* Modal */}
+      <Modal show={showModal} onHide={handleClose} dialogClassName="centered-modal" backdrop="static" keyboard={false}> 
+        <Modal.Body className='d-flex justify-content-center'>{modalMessage}</Modal.Body>
+        <div className='d-flex justify-content-center mb-4'>
+        <Button variant="secondary" onClick={handleClose} style={{width: 'fit-content'}}>
+            Close 
+          </Button></div>
+      </Modal>
     </div>
   );
 }
