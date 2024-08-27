@@ -58,13 +58,13 @@ function Navigationbar() {
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="mx-auto">
-            <Nav.Link as={ScrollLink} to="home" smooth={true} duration={500}>Home</Nav.Link>
-            <Nav.Link as={ScrollLink} to="about-us" smooth={true} duration={500}>About Us</Nav.Link>
-            <Nav.Link as={ScrollLink} to="services" smooth={true} duration={500}>Services</Nav.Link>
-            <Nav.Link as={ScrollLink} to="account-opening" smooth={true} duration={500}>Account Opening</Nav.Link>
-            <Nav.Link as={ScrollLink} to="resources" smooth={true} duration={500}>Resources</Nav.Link>
-            <Nav.Link as={ScrollLink} to="transparency" smooth={true} duration={500}>Transparency</Nav.Link>
-            <Nav.Link as={ScrollLink} to="contact-us" smooth={true} duration={500}>Contact Us</Nav.Link>
+            <Nav.Link as={ScrollLink} to="home" smooth={true} duration={500} style={{cursor: 'pointer'}}>Home</Nav.Link>
+            <Nav.Link as={ScrollLink} to="about-us" smooth={true} duration={500} style={{cursor: 'pointer'}}>About Us</Nav.Link>
+            <Nav.Link as={ScrollLink} to="services" smooth={true} duration={500} style={{cursor: 'pointer'}}>Services</Nav.Link>
+            <Nav.Link as={ScrollLink} to="account-opening" smooth={true} duration={500} style={{cursor: 'pointer'}}>Account Opening</Nav.Link>
+            <Nav.Link as={ScrollLink} to="resources" smooth={true} duration={500} style={{cursor: 'pointer'}}>Resources</Nav.Link>
+            <Nav.Link as={ScrollLink} to="transparency" smooth={true} duration={500} style={{cursor: 'pointer'}}>Transparency</Nav.Link>
+            <Nav.Link as={ScrollLink} to="contact-us" smooth={true} duration={500} style={{cursor: 'pointer'}}>Contact Us</Nav.Link>
           </Nav>
         </Navbar.Collapse>
       </Container>
