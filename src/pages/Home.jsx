@@ -8,8 +8,8 @@ const Home = () => {
       <div className="container pt-3 pb-3">
         <div className="row d-flex justify-content-cente align-items-center">
           <div className="col-md-6 d-flex flex-column align-items-left">
-            <h1 style={{ color: '#094E8F', fontWeight: '600' }}>"Empowering Investors, Enabling Access."</h1>
-            <p>Aionion Wealth is committed to revolutionizing investing in India by
+            <h1 style={{ color: '#094E8F', fontWeight: '600' }}>Empowering Investors, Enabling Access.</h1>
+            <p>Aionion Capital is committed to revolutionizing investing in India by
               creating informed investors and providing access to financial markets for everyone,
               regardless of background</p>
             <Link to='account-opening'>

@@ -6,7 +6,7 @@ const AccountOpening = () => {
     <>
       <div className="container mt-5">
         <h2 style={{ color: '#094E8F', fontWeight: '600' }}>Account Opening</h2>
-        <h4 className='mt-4' style={{ color: '#094E8F', fontWeight: '600' }}>Why Invest with Aionion Wealth?</h4>
+        <h4 className='mt-4' style={{ color: '#094E8F', fontWeight: '600' }}>Why Invest with Aionion Capital?</h4>
         <p className='mt-3'>"We provide the tools and support you need to make informed investment
           decisions and grow your wealth over time."</p>
         <div className='mt-5 d-flex flex-column justify-content-center align-items-center gap-5'>

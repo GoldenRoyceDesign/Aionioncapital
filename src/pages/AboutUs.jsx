@@ -26,7 +26,7 @@ const AboutUs = () => {
         <div className='mt-5'>
           <h2 style={{ color: '#094E8F', fontWeight: '600' }}>Compilance Statement</h2>
           <div className='p-4 mt-4' style={{ background: '#EC202A', color: 'white', borderRadius: '10px' }}>
-            <p className='text-center'>Aionion Wealth operates under the strict regulatory framework set by SEBI to protect
+            <p className='text-center'>Aionion Capital operates under the strict regulatory framework set by SEBI to protect
               investor interests and maintain market integrity</p>
           </div>
           

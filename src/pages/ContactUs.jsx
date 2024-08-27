@@ -77,7 +77,7 @@ function ContactUs() {
             <h5>Customer Support:</h5>
             <ul>
               <li>Phone: [Customer Support Number]</li>
-              <li>Email: <a href="mailto:support@aionionwealth.com">support@aionionwealth.com</a></li>
+              <li>Email: <a href="mailto:support@aionionwealth.com">support@aionioncapital.com</a></li>
               <li>Live Chat: Available during business hours.</li>
             </ul>
           </div>
@@ -86,7 +86,7 @@ function ContactUs() {
             <h5>Compliance Officer Contact:</h5>
             <ul>
               <li>Name: [Compliance Officer Name]</li>
-              <li>Email: <a href="mailto:compliance@aionionwealth.com">compliance@aionionwealth.com</a></li>
+              <li>Email: <a href="mailto:compliance@aionioncapital.com">compliance@aionioncapital.com</a></li>
               <li>Phone: [Compliance Officer Phone Number]</li>
             </ul>
           </div>
