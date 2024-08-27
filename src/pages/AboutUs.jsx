@@ -5,14 +5,14 @@ const AboutUs = () => {
   return (
     <>
       <div className='container mt-5'>
-        <h2 style={{ color: '#094E8F', fontWeight: '600' }}>About Aionion Wealth</h2>
+        <h2 style={{ color: '#094E8F', fontWeight: '600' }}>About Aionion Capital</h2>
         <div className='row d-flex justify-content-center align-items-center mt-5'>
           <div className='col-md-6 mb-4'>
             <img src={aboutSectionImage} alt='about-section-image' className='img-fluid w-75' />
           </div>
           <div className='col-md-6 d-flex flex-column align-items-left gap-4'>
             <h4 style={{ color: '#094E8F' }}>Our Vision</h4>
-            <p>"At Aionion Wealth, we envision a world where everyone has the tools,
+            <p>"At Aionion Capital, we envision a world where everyone has the tools,
               knowledge, and access to build wealth and achieve financial independence."</p>
             <h4 style={{ color: '#094E8F' }}>Our Mission</h4>
             <p>"Empowering Investors, Enabling Access. We are committed to
