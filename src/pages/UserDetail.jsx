@@ -3,7 +3,7 @@ import axios from 'axios';
 import { useParams } from 'react-router-dom';
 
 const UserDetail = () => {
-  const { userId } = useParams();
+  const { userId } = useParams(); // Get user ID from URL
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
@@ -11,7 +11,7 @@ const UserDetail = () => {
   useEffect(() => {
     axios.get(`/admin/user/${userId}`)
       .then(response => {
-        setUser(response.data);
+        setUser(response.data); // Set user data
         setLoading(false);
       })
       .catch(err => {
