@@ -46,22 +46,6 @@ app.post('/form', async (req, res) => {
 });
 
 
-// In your backend code (e.g., server.js)
-app.get('/admin/user/:userId', async (req, res) => {
-  try {
-    const user = await User.findById(req.params.userId); // Fetch user by ID
-    if (user) {
-      res.json(user); // Send JSON response
-    } else {
-      res.status(404).json({ message: 'User not found' });
-    }
-  } catch (error) {
-    res.status(500).json({ message: 'Error fetching user', error });
-  }
-});
-
-
-
 
 
 const port = process.env.PORT || 8001;
