@@ -8,10 +8,9 @@ const AdminPanel = () => {
   const [error, setError] = useState('');
 
   useEffect(() => {
-    // Fetch user data from the API
     axios.get('/admin/users')
       .then(response => {
-        // Ensure the response data is an array
+        console.log('API Response:', response.data); // Log the response data
         if (Array.isArray(response.data)) {
           setUsers(response.data);
         } else {
@@ -24,6 +23,7 @@ const AdminPanel = () => {
         setLoading(false);
       });
   }, []);
+  
 
   if (loading) return <div>Loading...</div>;
   if (error) return <div>{error}</div>;

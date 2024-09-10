@@ -46,18 +46,16 @@ app.post('/form', async (req, res) => {
 });
 
 
-app.get('/admin/user/:id', async (req, res) => {
+// In your backend code (e.g., server.js)
+app.get('/admin/users', async (req, res) => {
   try {
-    const user = await form.findById(req.params.id); // Fetch user by ID
-    if (user) {
-      res.json(user);
-    } else {
-      res.status(404).json({ message: 'User not found' });
-    }
+    const users = await User.find(); // Assuming `User` is your Mongoose model
+    res.json(users); // Send the array of users as JSON
   } catch (error) {
-    res.status(500).json({ message: 'Error fetching user data', error });
+    res.status(500).json({ message: 'Error fetching users', error });
   }
 });
+
 
 
 
