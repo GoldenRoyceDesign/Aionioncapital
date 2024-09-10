@@ -19,11 +19,11 @@ const AdminPanel = () => {
         setLoading(false);
       })
       .catch(err => {
+        console.error('Error:', err); // Log error details
         setError('Failed to load data');
         setLoading(false);
       });
   }, []);
-  
 
   if (loading) return <div>Loading...</div>;
   if (error) return <div>{error}</div>;
@@ -32,15 +32,11 @@ const AdminPanel = () => {
     <div>
       <h2>User Details</h2>
       <ul>
-        {users.length > 0 ? (
-          users.map(user => (
-            <li key={user._id}>
-              <Link to={`/admin/user/${user._id}`}>{user.name} - {user.email}</Link>
-            </li>
-          ))
-        ) : (
-          <li>No users found.</li>
-        )}
+        {users.map(user => (
+          <li key={user._id}>
+            <Link to={`/admin/user/${user._id}`}>{user.name} - {user.email}</Link>
+          </li>
+        ))}
       </ul>
     </div>
   );
