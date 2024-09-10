@@ -8,7 +8,6 @@ import Transparency from './pages/Transparency';
 import AccountOpening from './pages/AccountOpening';
 import Resources from './pages/Resources';
 import ContactUs from './pages/ContactUs';
-import AdminPanel from './pages/AdminPanel'; // Import Admin Panel
 import UserDetail from './pages/UserDetail'; // Import User Detail Component
 
 function App() {
@@ -17,7 +16,6 @@ function App() {
       <Navigationbar />
       <Routes>
         {/* Define routes for admin panel and user details */}
-        <Route path="/admin" element={<AdminPanel />} />
         <Route path="/admin/user/:userId" element={<UserDetail />} />
         
         {/* Define routes for existing pages */}
