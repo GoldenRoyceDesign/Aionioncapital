@@ -11,16 +11,17 @@ const UserDetail = () => {
   useEffect(() => {
     axios.get(`/admin/user/${userId}`)
       .then(response => {
-        console.log(response.data); // Log the response data
+        console.log('Response data:', response.data); // Log the response data
         setUser(response.data);
         setLoading(false);
       })
       .catch(err => {
-        console.error(err); // Log error details
+        console.error('Error fetching user data:', err); // Log the error
         setError('Failed to load user data');
         setLoading(false);
       });
   }, [userId]);
+  
   
 
   if (loading) return <div>Loading...</div>;
