@@ -8,9 +8,15 @@ const AdminPanel = () => {
   const [error, setError] = useState('');
 
   useEffect(() => {
+    // Fetch user data from the API
     axios.get('/admin/users')
       .then(response => {
-        setUsers(response.data);
+        // Ensure the response data is an array
+        if (Array.isArray(response.data)) {
+          setUsers(response.data);
+        } else {
+          setError('Data is not in the expected format');
+        }
         setLoading(false);
       })
       .catch(err => {
@@ -26,11 +32,15 @@ const AdminPanel = () => {
     <div>
       <h2>User Details</h2>
       <ul>
-        {users.map(user => (
-          <li key={user._id}>
-            <Link to={`/admin/user/${user._id}`}>{user.name} - {user.email}</Link>
-          </li>
-        ))}
+        {users.length > 0 ? (
+          users.map(user => (
+            <li key={user._id}>
+              <Link to={`/admin/user/${user._id}`}>{user.name} - {user.email}</Link>
+            </li>
+          ))
+        ) : (
+          <li>No users found.</li>
+        )}
       </ul>
     </div>
   );
