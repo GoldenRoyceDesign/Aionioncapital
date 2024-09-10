@@ -49,10 +49,23 @@ app.post('/form', async (req, res) => {
 // In your backend code (e.g., server.js)
 app.get('/admin/users', async (req, res) => {
   try {
-    const users = await User.find(); // Adjust according to your data model
-    res.json(users); // Ensure this sends a JSON response
+    const users = await User.find(); // Fetch users
+    res.json(users); // Send JSON response
   } catch (error) {
     res.status(500).json({ message: 'Error fetching users', error });
+  }
+});
+
+app.get('/admin/user/:userId', async (req, res) => {
+  try {
+    const user = await User.findById(req.params.userId); // Fetch specific user by ID
+    if (user) {
+      res.json(user); // Send JSON response
+    } else {
+      res.status(404).json({ message: 'User not found' });
+    }
+  } catch (error) {
+    res.status(500).json({ message: 'Error fetching user', error });
   }
 });
 
