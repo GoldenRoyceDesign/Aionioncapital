@@ -38,12 +38,13 @@ import Services from './pages/Services';
 import Transparency from './pages/Transparency';
 import AccountOpening from './pages/AccountOpening';
 import Resources from './pages/Resources';
+import File from './pages/File';
 
 function App() {
   return (
     <div>
       <Navigationbar />
-      <section id="home" style={{background: '#F3F2F7'}}>
+      <section id="home" style={{ background: '#F3F2F7' }}>
         <Home />
       </section>
       <section id="about-us">
@@ -58,14 +59,18 @@ function App() {
       <section id="services">
         <Services />
       </section>
-      
+
       <section id="resources">
         <Resources />
       </section>
-      
-      <section id="contact-us" style={{background: '#F3F2F7', padding: '.6rem 0'}} >
+
+      <section id="file" >
+        <File />
+      </section>
+
+      <section id="contact-us" style={{ background: '#F3F2F7', padding: '.6rem 0' }} >
         <ContactUs />
-        </section>
+      </section>
     </div>
   );
 }
