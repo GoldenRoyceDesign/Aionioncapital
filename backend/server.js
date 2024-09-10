@@ -46,6 +46,21 @@ app.post('/form', async (req, res) => {
 });
 
 
+app.get('/admin/user/:id', async (req, res) => {
+  try {
+    const user = await form.findById(req.params.id); // Fetch user by ID
+    if (user) {
+      res.json(user);
+    } else {
+      res.status(404).json({ message: 'User not found' });
+    }
+  } catch (error) {
+    res.status(500).json({ message: 'Error fetching user data', error });
+  }
+});
+
+
+
 
 const port = process.env.PORT || 8001;
 app.listen(port, () => {

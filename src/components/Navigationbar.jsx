@@ -40,6 +40,7 @@ import React from 'react';
 import { Navbar, Nav, Container } from 'react-bootstrap';
 import { Link as ScrollLink } from 'react-scroll';
 import logo from '../assets/aionion_logo.png'; // Adjust the path to your logo
+import file from '../download/Downloads_Section.zip';
 
 function Navigationbar() {
   return (
@@ -65,6 +66,21 @@ function Navigationbar() {
             <Nav.Link as={ScrollLink} to="resources" smooth={true} duration={500} style={{cursor: 'pointer'}}>Resources</Nav.Link>
             <Nav.Link as={ScrollLink} to="transparency" smooth={true} duration={500} style={{cursor: 'pointer'}}>Transparency</Nav.Link>
             <Nav.Link as={ScrollLink} to="contact-us" smooth={true} duration={500} style={{cursor: 'pointer'}}>Contact Us</Nav.Link>
+            <a
+              href={file} // Make sure this path is correct
+              download="Downloads_Section.zip"
+              style={{
+                backgroundColor: '#007bff',
+                color: 'white',
+                borderRadius: '4px',
+                padding: '8px 12px',
+                textDecoration: 'none',
+                display: 'inline-block',
+                width: 'fit-content'
+              }}
+            >
+              <i className="fas fa-file-download"></i> Download PDF
+            </a>
           </Nav>
         </Navbar.Collapse>
       </Container>
