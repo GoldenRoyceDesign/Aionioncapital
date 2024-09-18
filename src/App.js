@@ -64,7 +64,7 @@ function App() {
         <File />
       </section>
 
-      <section id="contact-us" style={{ background: '#F3F2F7', padding: '.6rem 0' }} >
+      <section id="contact-us" style={{ background: 'linear-gradient(to bottom right, #FFFFFF 15%, #f57d87 50%, #094E8F 100%)', padding: '.6rem 0' }} >
         <ContactUs />
       </section>
     </div>
