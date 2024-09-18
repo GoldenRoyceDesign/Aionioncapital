@@ -34,9 +34,8 @@ import Navigationbar from './components/Navigationbar';
 import ContactUs from './pages/ContactUs';
 import Home from './pages/Home';
 import AboutUs from './pages/AboutUs';
-import Services from './pages/Services';
+import AccountCreation from './pages/AccountCreation';
 import Transparency from './pages/Transparency';
-import AccountOpening from './pages/AccountOpening';
 import Resources from './pages/Resources';
 import File from './pages/File';
 
@@ -50,14 +49,11 @@ function App() {
       <section id="about-us">
         <AboutUs />
       </section>
-      <section id="account-opening">
-        <AccountOpening />
-      </section>
       <section id="transparency">
         <Transparency />
       </section>
-      <section id="services">
-        <Services />
+      <section id="accountCreation">
+        <AccountCreation />
       </section>
 
       <section id="resources">

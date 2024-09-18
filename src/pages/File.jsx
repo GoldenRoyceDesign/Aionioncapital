@@ -1,10 +1,5 @@
 import React from 'react';
-import HindiPDF from '../download/CLIENT REGISTRATION ADDITIONAL DOCUMENTS - VERNACULAR LANGUAGES/Hindi.pdf';
-import KannadaPDF from '../download/CLIENT REGISTRATION ADDITIONAL DOCUMENTS - VERNACULAR LANGUAGES/Kannada.pdf';
-import MalyalamPDF from '../download/CLIENT REGISTRATION ADDITIONAL DOCUMENTS - VERNACULAR LANGUAGES/Malyalam.pdf';
-import TamilPDF from '../download/CLIENT REGISTRATION ADDITIONAL DOCUMENTS - VERNACULAR LANGUAGES/Tamil.pdf';
-import TeluguPDF from '../download/CLIENT REGISTRATION ADDITIONAL DOCUMENTS - VERNACULAR LANGUAGES/Telugu.pdf';
-import UrduPDF from '../download/CLIENT REGISTRATION ADDITIONAL DOCUMENTS - VERNACULAR LANGUAGES/Urdu.pdf';
+import VernacularLanguagesForm from '../download/CLIENT REGISTRATION ADDITIONAL DOCUMENTS - VERNACULAR LANGUAGES/vernacular languages form.zip';
 import FinancialDoc from '../download/Financial Details Updation Form.docx';
 import GrievancesDoc from '../download/Grievances Redressal Procedure.docx';
 import InvestorsDoc from '../download/Investors attention.docx';
@@ -16,12 +11,7 @@ import TradingClosureDoc from '../download/Trading Account Closure form.docx';
 const File = () => {
   // Define your PDFs with their respective folder paths
   const files = [
-    { name: 'CLIENT REGISTRATION ADDITIONAL DOCUMENTS-Hindi.pdf', url: HindiPDF },
-    { name: 'CLIENT REGISTRATION ADDITIONAL DOCUMENTS-Kannada.pdf', url: KannadaPDF },
-    { name: 'CLIENT REGISTRATION ADDITIONAL DOCUMENTS-Malyalam.pdf', url: MalyalamPDF },
-    { name: 'CLIENT REGISTRATION ADDITIONAL DOCUMENTS-Tamil.pdf', url: TamilPDF },
-    { name: 'CLIENT REGISTRATION ADDITIONAL DOCUMENTS-Telugu.pdf', url: TeluguPDF },
-    { name: 'CLIENT REGISTRATION ADDITIONAL DOCUMENTS-Urdu.pdf', url: UrduPDF },
+    { name: 'CLIENT REGISTRATION ADDITIONAL DOCUMENTS - VERNACULAR LANGUAGES', url: VernacularLanguagesForm},
     { name: 'Financial Details Updation Form.docx', url: FinancialDoc },
     { name: 'Grievances Redressal Procedure.docx', url: GrievancesDoc },
     { name: 'Investors attention.docx', url: InvestorsDoc },
@@ -70,7 +60,7 @@ const File = () => {
 
   return (
     <div style={containerStyle} className='mt-5 mb-5'>
-      <h2 style={{ color: '#094E8F', fontWeight: '600', textAlign: 'center' }} className='mb-5'>Available Files</h2>
+      <h2 style={{ color: '#094E8F', fontWeight: '600', textAlign: 'center' }} className='mb-5'>Download Forms</h2>
       <ul style={listStyle}>
         {files.map((file, index) => (
           <li key={index} style={itemStyle}>

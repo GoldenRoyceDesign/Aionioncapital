@@ -1,43 +1,107 @@
 import React from 'react'
-import transparency from '../assets/transparency.png'
+import '../pages/transparency.css'
 
 const Transparency = () => {
   return (
     <>
       <div className='container mt-5'>
-        <h2 style={{ color: '#094E8F', fontWeight: '600' }}>Transparency & Compliance</h2>
-        <h4 className='mt-4' style={{ color: '#094E8F', fontWeight: '600' }}>Basic Details of Aionion Capital</h4>
+        <h2 style={{ color: '#094E8F', fontWeight: '600' }}>Basic Details</h2>
 
-        <div className='mt-4'>
-          <p><span style={{ color: '#EC202A', fontWeight: '800' }}>Registration Number:</span>   XYZ123456</p>
-          <p><span style={{ color: '#EC202A', fontWeight: '800' }}>Registered Address:</span>  Head Office Address, with branch locations listed if
-            applicable.</p>
-        </div>
-
-        <div className='mt-4'>
-        <h4 className='mt-4' style={{ color: '#094E8F', fontWeight: '600' }}> Authorized Persons</h4>
-        <p>Detailed list of individuals authorized to act on behalf of Aionion Capital, including their contact details.</p>
+        <div className='mt-4 basicdetail'>
+          <table>
+            <tr>
+              <td>Name</td>
+              <td>M/s. AIONION CAPITAL MARKET SERVICES PRIVATE LIMITED</td>
+            </tr>
+            <tr>
+              <td>Address</td>
+              <td>3RD FLOOR, MEERLAN TOWERS, NO.33, HANUMANTHA ROAD, ROYAPETTAH, CHENNAI - 600014</td>
+            </tr>
+            <tr>
+              <td>Mail id</td>
+              <td>compliance@aionioncapital.com</td>
+            </tr>
+            <tr>
+              <td>Company PAN</td>
+              <td>ABACA2285K</td>
+            </tr>
+            <tr>
+              <td>SEBI Registration Number</td>
+              <td>INZ000318532 - Date: 28.06.2024</td>
+            </tr>
+            <tr>
+              <td>GST Registration Number</td>
+              <td>33ABACA2285K1ZR</td>
+            </tr>
+            <tr>
+              <td>CIN</td>
+              <td>U66120TN2024PTC167864</td>
+            </tr>
+            <tr>
+              <td>TAN</td>
+              <td>CHEA37281G</td>
+            </tr>
+            <tr>
+              <td>BSE</td>
+              <td>6878</td>
+            </tr>
+            <tr>
+              <td>NSE</td>
+              <td>90405</td>
+            </tr>
+          </table>
         </div>
 
         <div className='mt-5'>
-          <h4 className='mt-4' style={{ color: '#094E8F', fontWeight: '600'}}>Step-by-Step Guide to Opening an Account</h4>
-          <p style={{ color: '#094E8F'}}>We are committed to addressing any concerns you may have. Please follow the steps
-          below to file a complaint.</p>
-          <div className='container mt-5'>
-            <div className='row'>
-              <div className='col-md-6 mb-4'>
-                <img src={transparency} alt='transparency-image' className='img-fluid w-75' />
-              </div>
-              <div className='col-md-6 d-flex flex-column align-items-left justify-content-center gap-4'>
-                <p><span style={{fontWeight: 'bold'}}>Step 1:  </span>Submit your complaint via our designated email:
-                [complaints@aionioncapital.com]</p>
-                <p><span style={{fontWeight: 'bold'}}>Step 2:  </span>Track the status of your complaint online using 
-                your complaint ID.</p>
-                <p><span style={{fontWeight: 'bold'}}>Step 3:  </span>Resolution will be communicated within [XX] 
-                business days.</p>
-              </div>
-            </div>
-          </div>
+          <h4 className='mt-4' style={{ color: '#094E8F', fontWeight: '600' }}> Authorized Persons</h4>
+          <p>Detailed list of individuals authorized to act on behalf of Aionion Capital Market Services Private Limited, including their contact details.</p>
+        </div>
+
+        <div className='mt-5 authorizedPerson'>
+          <h5 className='p-3'>Details of Key Managerial Personnel (KMPs) Including Compliance Officer</h5>
+
+          <table>
+            <thead>
+              <tr>
+                <th>Sl. No.</th>
+                <th>Director's Name</th>
+                <th>Designation</th>
+                <th>Email Id</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td className='firstcol'>1</td>
+                <td>Anish Gupta</td>
+                <td className='firstcol'>Director</td>
+                <td></td>
+              </tr>
+              <tr>
+                <td className='firstcol'>2</td>
+                <td>Dileep Keerthi Kumar</td>
+                <td className='firstcol'>Director</td>
+                <td></td>
+              </tr>
+              <tr>
+                <td className='firstcol'>3</td>
+                <td>Vinodhkumar G</td>
+                <td className='firstcol'>Director</td>
+                <td></td>
+              </tr>
+              <tr>
+                <td className='firstcol'>4</td>
+                <td>A S Rajasekaran</td>
+                <td className='firstcol'>Director</td>
+                <td></td>
+              </tr>
+              <tr>
+                <td className='firstcol'>5</td>
+                <td>Saravanan</td>
+                <td className='firstcol'>Compliance Officer</td>
+                <td>compliance@aionioncapital.com</td>
+              </tr>
+            </tbody>
+          </table>
         </div>
       </div>
     </>
