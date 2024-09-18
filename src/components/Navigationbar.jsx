@@ -60,9 +60,9 @@ function Navigationbar() {
           <Nav className="mx-auto">
             <Nav.Link as={ScrollLink} to="home" smooth={true} duration={500} style={{cursor: 'pointer'}}>Home</Nav.Link>
             <Nav.Link as={ScrollLink} to="about-us" smooth={true} duration={500} style={{cursor: 'pointer'}}>About Us</Nav.Link>
+            <Nav.Link as={ScrollLink} to="transparency" smooth={true} duration={500} style={{cursor: 'pointer'}}>Transparency</Nav.Link>
             <Nav.Link as={ScrollLink} to="accountCreation" smooth={true} duration={500} style={{cursor: 'pointer'}}>Create Account</Nav.Link>
             <Nav.Link as={ScrollLink} to="resources" smooth={true} duration={500} style={{cursor: 'pointer'}}>Help</Nav.Link>
-            <Nav.Link as={ScrollLink} to="transparency" smooth={true} duration={500} style={{cursor: 'pointer'}}>Transparency</Nav.Link>
             <Nav.Link as={ScrollLink} to="file" smooth={true} duration={500} style={{cursor: 'pointer'}}>Downloads</Nav.Link>
             <Nav.Link as={ScrollLink} to="contact-us" smooth={true} duration={500} style={{cursor: 'pointer'}}>Contact Us</Nav.Link>
           </Nav>
