@@ -19,9 +19,10 @@ const Transparency = () => {
             </tr>
             <tr>
               <td>Mail id</td>
-              <td>compliance@aionioncapital.com</td>
+              <td><a href="mailto:compliance@aionioncapital.com" style={{ color: 'white', textDecoration: 'none' }}>compliance@aionioncapital.com</a></td>
             </tr>
             <tr>
+              
               <td>Company PAN</td>
               <td>ABACA2285K</td>
             </tr>
@@ -74,31 +75,33 @@ const Transparency = () => {
                 <td className='firstcol'>1</td>
                 <td>Anish Gupta</td>
                 <td className='firstcol'>Director</td>
-                <td></td>
+                <td><a href="mailto:anish@aionioncapital.com" style={{ color: 'black', textDecoration: 'none' }}>anish@aionioncapital.com</a></td>
               </tr>
               <tr>
                 <td className='firstcol'>2</td>
                 <td>Dileep Keerthi Kumar</td>
                 <td className='firstcol'>Director</td>
-                <td></td>
+                <td><a href="mailto:dileep.k@aionioncapital.com" style={{ color: 'black', textDecoration: 'none' }}>dileep.k@aionioncapital.com</a></td>
               </tr>
               <tr>
                 <td className='firstcol'>3</td>
-                <td>Vinodhkumar G</td>
+                <td>Gnanasundaram Vinodhkumar</td>
                 <td className='firstcol'>Director</td>
-                <td></td>
+                <td><a href="mailto:vinodhkumar.g@aionioncapital.com" style={{ color: 'black', textDecoration: 'none' }}>vinodhkumar.g@aionioncapital.com</a></td>
               </tr>
               <tr>
                 <td className='firstcol'>4</td>
-                <td>A S Rajasekaran</td>
+                <td>Ariyapadi Srinivasan</td>
                 <td className='firstcol'>Director</td>
-                <td></td>
+                <td><a href="mailto:rajasekaran.s@aionioncapital.com" style={{ color: 'black', textDecoration: 'none' }}>
+                  rajasekaran.s@aionioncapital.com
+                </a></td>
               </tr>
               <tr>
                 <td className='firstcol'>5</td>
                 <td>Saravanan</td>
                 <td className='firstcol'>Compliance Officer</td>
-                <td>compliance@aionioncapital.com</td>
+                <td><a href="mailto:compliance@aionioncapital.com" style={{ color: 'black', textDecoration: 'none' }}>compliance@aionioncapital.com</a></td>
               </tr>
             </tbody>
           </table>

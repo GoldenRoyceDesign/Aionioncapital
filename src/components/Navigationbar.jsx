@@ -39,7 +39,7 @@
 import React from 'react';
 import { Navbar, Nav, Container } from 'react-bootstrap';
 import { Link as ScrollLink } from 'react-scroll';
-import logo from '../assets/aionion_logo.png'; // Adjust the path to your logo
+import logo from '../assets/Logo_Aionion.png'; // Adjust the path to your logo
 
 function Navigationbar() {
   return (
@@ -49,10 +49,10 @@ function Navigationbar() {
           <a href='/'>
           <img
             src={logo}
-            width="50"
-            height="50"
-            className="d-inline-block align-top"
-            alt="College Logo"
+            width="190"
+            height="55"
+            className="d-inline-block align-top img-fluid"
+            alt="Logo"
           /></a>
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
