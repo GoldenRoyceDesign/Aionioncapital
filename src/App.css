@@ -1,0 +1,359 @@
+/* 
+
+Home page style 
+    ==> File component style
+
+*/
+
+/* About page style */
+
+/* Resource page style */
+
+
+
+
+
+/* Home page style */
+.home {
+  min-height: 100vh;
+  background: linear-gradient(to bottom, #DBDBFF 0%, #FFFFFF 95%);
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.home h1 {
+  font-weight: 600;
+  font-size: 55px;
+  background: linear-gradient(to right, #3B3AF8 10%, #232292 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: transparent;
+}
+
+.home .btn button {
+  padding: 10px 35px;
+  border: 1px solid #3B3AF8;
+  border-radius: 25px;
+  color: #3B3AF8;
+}
+
+.home .btn button:hover {
+  background: linear-gradient(to bottom, #3B3AF8 0%, #232292 100%);
+  color: white;
+}
+
+.home .center-box {
+  box-shadow: 0 8px 4px rgb(0, 0, 0, 0.5);
+  border-radius: 20px;
+  background: #FFFFFF;
+}
+
+.home .center-box p {
+  box-sizing: border-box;
+  border: 1px solid #3B3AF8;
+  padding: 5px 25px;
+  border-radius: 25px;
+  font-size: 14px;
+  width: 150px;
+}
+
+.account {
+  max-height: 100vh;
+  background: #3B3AF8;
+}
+
+.links {
+  background: #232292;
+}
+
+.file-container {
+  margin: 20px auto;
+  padding: 10px;
+  max-width: 100%;
+}
+
+.file-links {
+  display: flex;
+  flex-wrap: wrap;
+  /* Wrap links to a new row when needed */
+  gap: 10px;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.file-link {
+  text-decoration: none;
+  color: white;
+  font-size: 14px;
+  font-weight: 500;
+  padding: 5px 10px;
+  transition: color 0.3s, background-color 0.3s;
+  white-space: nowrap;
+  /* Prevent wrapping */
+  overflow: hidden;
+  /* Hide overflowing text */
+  text-overflow: ellipsis;
+  /* Add ellipsis (...) */
+  max-width: 100%;
+  /* Limit width to prevent overflow */
+  display: inline-block;
+  /* Needed for truncation */
+}
+
+
+.file-link:hover {
+  color: #fff;
+  text-decoration: underline;
+}
+
+.separator {
+  color: #FFFFFF;
+  margin: 0 5px;
+  user-select: none;
+  /* Prevent selection of the separator */
+}
+
+/* Responsive adjustments for smaller screens */
+@media (max-width: 768px) {
+  .file-container {
+    padding: 10px;
+  }
+
+  .file-links {
+    gap: 8px;
+    justify-content: flex-start;
+  }
+
+  .file-link {
+    font-size: 12px;
+    padding: 5px;
+    max-width: 90%;
+  }
+
+  .separator {
+    margin: 0 3px;
+  }
+}
+
+@media (max-width: 350px) {
+  .separator {
+    visibility: hidden;
+  }
+}
+
+
+
+/* About page style */
+
+.about {
+  max-width: 100%;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.about-head {
+  width: 100vw;
+  background: #2B4EF4;
+  margin: 0;
+}
+
+.about-head h1 {
+  color: #FFFFFF;
+  text-align: center;
+}
+
+.about-container {
+  box-sizing: border-box;
+  background: #333335;
+  color: white;
+  text-align: center;
+  width: 80vw;
+  margin: -20px auto 0 auto;
+  /* Overlap the about-head section */
+}
+
+/* Carousel style */
+
+.mission-container {
+  display: flex;
+  justify-content: center;
+  align-items: stretch;
+  /* Makes both sides equal height */
+  padding: 20px;
+  border-radius: 20px;
+  margin: 30px 0;
+  width: 100%;
+}
+
+.mission-left,
+.mission-right {
+  flex: 1;
+  /* Both sides take equal width */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  /* Centers content vertically within each side */
+}
+
+.mission-left {
+  width: 50%;
+}
+
+.image-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  /* Ensures the container stretches to full height */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+
+.image-container img {
+  border-radius: 20px;
+  max-width: 100%;
+  max-height: 100%;
+  height: auto;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+}
+
+.mission-right {
+  background-color: #f4f4f4;
+  /* Background color for the right side */
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  color: #333;
+  background: linear-gradient(to bottom, #FFFFFF, #b0b0e9);
+  /* Adjust colors as needed */
+  text-align: center;
+  width: 50%;
+}
+
+.mission-right h2 {
+  background: linear-gradient(to right, #1110AE 10%, #FE667C 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: transparent;
+}
+
+.team h1 {
+  background: linear-gradient(to right, #1110AE 10%, #FE667C 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: transparent;
+}
+
+.team .team-member{
+  box-sizing: border-box;
+  box-shadow: 0 4px 8px rgb(0, 0, 0, 0.5);
+  padding: 20px;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 200px;
+}
+
+.team .team-member:hover{
+  box-shadow: inset 0 4px 8px rgb(0, 0, 0, 0.5);
+}
+
+.team .team-member p{
+  color: #4B4949;
+}
+
+
+
+.icon-link {
+  text-decoration: none;
+}
+
+.icon-circle {
+  width: 30px; /* Adjust circle size */
+  height: 30px; /* Adjust circle size */
+  background-color: #0a66c2; /* LinkedIn blue background */
+  border-radius: 50%; /* Makes it circular */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white; /* Makes LinkedIn symbol white */
+  transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+.icon-circle:hover {
+  transform: scale(1.1); /* Slight zoom effect */
+  background-color: #004182; /* Darker blue on hover */
+}
+
+.icon-circle svg {
+  font-size: 14px; /* Adjust size of the LinkedIn symbol */
+}
+
+
+
+/* Resource page style */
+
+.resource{
+  background: #2B4EF4;
+  color: white;
+  text-align: left;
+}
+
+.resource a{
+  color: black;
+  word-wrap: break-word; /* Enable breaking for long links */
+  overflow-wrap: anywhere;
+}
+
+
+/* Contact page style */
+
+.contact{
+  background-image: url('../src/assets/contact-bg.png');
+  background-position: center;
+  background-size: cover;
+  max-width: 100%;
+  overflow: hidden;
+}
+
+.contact h1{
+  background: linear-gradient(to right, #1110AE 10%, #FE667C 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: transparent;
+  text-align: center;
+  font-weight: 600;
+}
+
+.contact .row > .col-md-6 {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; /* Evenly spaces inputs vertically */
+}
+
+.contact input, textarea{
+  box-shadow: 0 4px 8px rgb(0, 0, 0, 0.5);
+}
+
+textarea {
+  resize: none; /* Prevents resizing of the message box */
+}
+
+
+.contact .btn{
+  background: linear-gradient(to right, #3B3AF8 10%, #232292 100%);
+  color: #f4f4f4;
+  border-radius: 0;
+}

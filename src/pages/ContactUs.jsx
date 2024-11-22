@@ -1,75 +1,70 @@
 import React from 'react';
-import '../pages/contact.css';  // Assuming you're adding custom styles
-import footer_logo from '../assets/Logo_Aionion.png';
+import contact from '../assets/contact.png'
 
 function ContactUs() {
 
 
   return (
     <>
-      <div className="container mt-5 mb-5 contact">
+      <section className='contact pt-3 pb-3'>
+        <div className="container mt-5">
+          <h1>Contact Us</h1>
 
-        <div className='row mt-5' style={{ color: '#094E8F' }}>
-          <div className="col-md-5 d-flex flex-column justify-content-center align-items-center text-center">
-            <img src={footer_logo} alt='footer_logo' className='img-fluid w-50' />
+          <div className="mt-3">
+            <h2>We are here to help you!</h2>
+            <div className="row d-flex justify-content-between align-items-center mt-4">
+              <div className="col-md-7">
+                <form>
+                  <div className="row">
+                    {/* Left column inputs */}
+                    <div className="col-md-6 mb-3">
+                      <div className="form-group">
+                        <label htmlFor="name">Name</label>
+                        <input type="text" id="name" className="form-control" />
+                      </div>
+                      <div className="form-group mt-3">
+                        <label htmlFor="email">E - Mail Address</label>
+                        <input type="email" id="email" className="form-control" />
+                      </div>
+                      <div className="form-group mt-3">
+                        <label htmlFor="phone">Phone Number</label>
+                        <input type="tel" id="phone" className="form-control" />
+                      </div>
+                    </div>
+                    {/* Right column inputs */}
+                    <div className="col-md-6">
+                      <div className="form-group">
+                        <label htmlFor="subject">Subject</label>
+                        <input type="text" id="subject" className="form-control" />
+                      </div>
+                      <div className="form-group mt-3">
+                        <label htmlFor="message">Message</label>
+                        <textarea id="message" rows="5" className="form-control"></textarea>
+                      </div>
+                    </div>
+                  </div>
+                  {/* Submit button */}
+                  <div className="mt-4">
+                    <button type="submit" className="btn ps-4 pe-4 mt-3 mb-3">
+                      Submit
+                    </button>
+                  </div>
+                </form>
+              </div>
+              <div className="col-md-4">
+                <img src={contact} alt="contact-img" className="img-fluid" />
 
-            <p className='mt-4' style={{ fontWeight: '600' }}>M/s. AIONION CAPITAL MARKET SERVICES PRIVATE LIMITED</p>
-            <p className='mt-2'>3RD FLOOR, MEERLAN TOWERS, <br></br>
-              NO.33, HANUMANTHA ROAD, <br></br>
-              ROYAPETTAH, <br></br>
-              CHENNAI – 600014</p>
-          </div>
-
-
-          <div className='col-md-7'>
-            <div style={{ padding: '20px', maxWidth: '600px' }}>
-              <table style={{ width: '100%', borderCollapse: 'collapse', color: 'white', textAlign: 'center' }}>
-                <tbody style={{ backgroundColor: 'transparent', color: 'white' }}>
-                  <tr>
-                    <td style={{ padding: '10px', borderBottom: '1px solid white', textAlign: 'center' }}>SEBI Registration Number</td>
-                    <td style={{ padding: '10px', borderBottom: '1px solid white', textAlign: 'center' }}>INZ000318532 - Date: 28.06.2024</td>
-                  </tr>
-                  <tr>
-                    <td style={{ padding: '10px', borderBottom: '1px solid white', textAlign: 'center' }}>GST Registration Number</td>
-                    <td style={{ padding: '10px', borderBottom: '1px solid white', textAlign: 'center' }}>33ABACA2285K1ZR</td>
-                  </tr>
-                  <tr>
-                    <td style={{ padding: '10px', borderBottom: '1px solid white', textAlign: 'center' }}>CIN</td>
-                    <td style={{ padding: '10px', borderBottom: '1px solid white', textAlign: 'center' }}>U66120TN2024PTC167864</td>
-                  </tr>
-                  <tr>
-                    <td style={{ padding: '10px', borderBottom: '1px solid white', textAlign: 'center' }}>TAN</td>
-                    <td style={{ padding: '10px', borderBottom: '1px solid white', textAlign: 'center' }}>CHEA37281G</td>
-                  </tr>
-                  <tr>
-                    <td style={{ padding: '10px', borderBottom: '1px solid white', textAlign: 'center' }}>BSE</td>
-                    <td style={{ padding: '10px', borderBottom: '1px solid white', textAlign: 'center' }}>6878</td>
-                  </tr>
-                  <tr>
-                    <td style={{ padding: '10px', borderBottom: '1px solid white', textAlign: 'center' }}>NSE</td>
-                    <td style={{ padding: '10px', borderBottom: '1px solid white', textAlign: 'center' }}>90405</td>
-                  </tr>
-                </tbody>
-              </table>
+                <div className='mt-5'>
+                  <h5 style={{ color: '#3B3AF8' }}>Visit Us</h5>
+                  <p><a href='mailto:Email us : contactus@aionioncapital.com' style={{ color: '#403F3F', fontWeight: '500', textDecoration: 'none' }}>Email us : contactus@aionioncapital.com</a></p>
+                </div>
+              </div>
             </div>
+
           </div>
         </div>
-      </div>
+      </section>
 
-      <div className='text-center p-4' style={{background: '#094E8F'}}>
-        <p className='text-white'>Important Links:</p>
-        <div className='d-flex justify-content-center align-items-center gap-2' style={{ color: '#98CDFF' }}>
-          <p><a href='https://www.nseindia.com/' style={{ color: '#98CDFF', textDecoration: 'none' }}>NSE</a> <span>|</span></p>
-          <p><a href='https://www.bseindia.com/static/investors/cac_tm.aspx?expandable=2' style={{ color: '#98CDFF', textDecoration: 'none' }}>BSE </a> <span>|</span></p>
-          <p><a href='https://www.sebi.gov.in/' style={{ color: '#98CDFF', textDecoration: 'none' }}>SEBI </a> <span>|</span></p>
-          <p><a href='https://www.cdslindia.com/' style={{ color: '#98CDFF', textDecoration: 'none' }}>CDSL</a> <span>|</span></p>
-          <p><a href='/' style={{ color: '#98CDFF', textDecoration: 'none' }}>NSDL</a> <span>|</span></p>
-        </div>
-        <p className='mt-3' style={{color: '#E1E5E8'}}>The Stock Exchanges are not in any manner answerable, responsible or liable to any person or persons for any acts of omission or commission, errors,
-          mistakes and/or violation, actual or perceived, by us or our partners, agents, associates, etc., of any of the Rules, Regulations, Bye-laws of the Stock
-          Exchanges, SEBI Act or any other laws in force from time to time. The Stock Exchanges are not answerable, responsible or liable for any information
-          on this Website or for any services rendered by us, our employees, and our servants.</p>
-      </div>
     </>
   );
 }
