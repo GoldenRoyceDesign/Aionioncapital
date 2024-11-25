@@ -1,30 +1,23 @@
 const express = require('express');
-const twilio = require('twilio');
 const nodemailer = require('nodemailer');
 const dotenv = require('dotenv');
 dotenv.config();
 
 const app = express();
-const twilioClient = twilio(process.env.TWILIO_SID, process.env.TWILIO_AUTH_TOKEN);
-
-// Configure Nodemailer
-const transporter = nodemailer.createTransport({
-    service: 'gmail', // Use your email provider
-    auth: {
-        user: process.env.EMAIL_USER,
-        pass: process.env.EMAIL_PASS, // Use an app-specific password if required
-    },
-});
+const twilioClient = require('twilio')(process.env.TWILIO_SID, process.env.TWILIO_AUTH_TOKEN);
 
 app.use(express.json());
 
-// OTP storage (in-memory for simplicity, use Redis or a database for production)
-let otpStore = {};
+// Configure Nodemailer
+const transporter = nodemailer.createTransport({
+    service: 'gmail',
+    auth: {
+        user: process.env.EMAIL_USER,
+        pass: process.env.EMAIL_PASS,
+    },
+});
 
-// Generate OTP function
-const generateOtp = () => Math.floor(100000 + Math.random() * 900000); // 6-digit OTP
-
-// Endpoint to send OTP to mobile and email
+// Endpoint to send OTP
 app.post('/sendOtp', async (req, res) => {
     const { mobile, email } = req.body;
 
@@ -32,24 +25,18 @@ app.post('/sendOtp', async (req, res) => {
         return res.status(400).send('Mobile and email are required.');
     }
 
-    const otp = generateOtp();
-    const expiry = Date.now() + 5 * 60 * 1000; // OTP expiry time: 5 minutes
-
-    // Store OTP and expiry time for both mobile and email
-    otpStore[mobile] = { otp, expiry };
-    otpStore[email] = { otp, expiry };
-
     try {
-        // Send OTP to mobile (Twilio)
-        await twilioClient.messages.create({
-            body: `Your OTP is: ${otp}`,
-            from: process.env.TWILIO_PHONE_NUMBER,
-            to: mobile,
-        });
+        // Send OTP via Twilio Verify Service
+        await twilioClient.verify.services(process.env.TWILIO_SERVICE_SID)
+            .verifications.create({
+                to: mobile, // Mobile number with country code
+                channel: 'sms', // Channel: sms, call, or email
+            });
 
-        console.log(`SMS sent to ${mobile}`);
+        console.log(`SMS OTP sent to ${mobile}`);
 
         // Send OTP to email (Nodemailer)
+        const otp = '123456'; // Optional, if you want to send the same OTP by email
         const mailOptions = {
             from: process.env.EMAIL_USER,
             to: email,
@@ -68,28 +55,29 @@ app.post('/sendOtp', async (req, res) => {
 });
 
 // Endpoint to verify OTP
-app.post('/verifyOtp', (req, res) => {
-    const { mobile, email, otp } = req.body;
+app.post('/verifyOtp', async (req, res) => {
+    const { mobile, otp } = req.body;
 
-    if (!mobile || !email || !otp) {
-        return res.status(400).send('Mobile, email, and OTP are required.');
+    if (!mobile || !otp) {
+        return res.status(400).send('Mobile and OTP are required.');
     }
 
-    const mobileOtp = otpStore[mobile];
-    const emailOtp = otpStore[email];
+    try {
+        // Verify OTP via Twilio Verify Service
+        const verification = await twilioClient.verify.services(process.env.TWILIO_SERVICE_SID)
+            .verificationChecks.create({
+                to: mobile,
+                code: otp, // The OTP to verify
+            });
 
-    // Check OTP for both mobile and email
-    if (
-        mobileOtp &&
-        emailOtp &&
-        mobileOtp.otp === otp &&
-        emailOtp.otp === otp &&
-        Date.now() < mobileOtp.expiry &&
-        Date.now() < emailOtp.expiry
-    ) {
-        res.status(200).send('OTP verified successfully!');
-    } else {
-        res.status(400).send('Invalid OTP or OTP has expired.');
+        if (verification.status === 'approved') {
+            res.status(200).send('OTP verified successfully!');
+        } else {
+            res.status(400).send('Invalid OTP or OTP expired.');
+        }
+    } catch (err) {
+        console.error('Error verifying OTP:', err);
+        res.status(500).send('Error verifying OTP');
     }
 });
 
