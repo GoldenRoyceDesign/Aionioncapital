@@ -47,7 +47,7 @@ const VerifyPage = ({ mobile, email }) => {
         setError('');
         const otp = type === 'mobile' ? mobileOtp.join('') : emailOtp.join('');
         try {
-            const response = await axios.post('http://localhost:5000/verifyOtp', { mobile, email, otp });
+            const response = await axios.post('https://aionion-capital.onrender.com/verifyOtp', { mobile, email, otp });
             if (response.data === 'OTP verified successfully!') {
                 if (type === 'mobile') setMobileVerified(true);
                 else setEmailVerified(true);
@@ -65,7 +65,7 @@ const VerifyPage = ({ mobile, email }) => {
     const resendOtp = async (type) => {
         setError('');
         try {
-            const response = await axios.post('http://localhost:5000/sendOtp', { mobile, email });
+            const response = await axios.post('https://aionion-capital.onrender.com/sendOtp', { mobile, email });
             if (response.data === 'OTP sent successfully!') {
                 type === 'mobile' ? setMobileCountdown(180) : setEmailCountdown(180);
                 alert('OTP resent successfully!');
