@@ -49,7 +49,7 @@ function ContactUs() {
                 <form onSubmit={handleSubmit}>
                   <div className="row">
                     {/* Left column inputs */}
-                    <div className="col-md-6 mb-3">
+                    <div className="col-md-6">
                       <div className="form-group">
                         <label htmlFor="name">Name</label>
                         <input type="text" id="name" className="form-control" />
