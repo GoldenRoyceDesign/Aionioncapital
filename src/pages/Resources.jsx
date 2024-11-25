@@ -39,7 +39,7 @@ const Resources = () => {
             at SEBI ODR Circular.</p>
         </div>
 
-        <div></div>
+      
 
       </div>
     </>
