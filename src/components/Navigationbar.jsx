@@ -13,7 +13,7 @@ function Navigationbar() {
             width="150"
             height="40"
             className="d-inline-block align-top"
-            alt="College Logo"
+            alt="Logo"
           />
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />

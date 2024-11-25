@@ -3,6 +3,38 @@ import contact from '../assets/contact.png'
 
 function ContactUs() {
 
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    const formData = {
+      name: document.getElementById('name').value,
+      email: document.getElementById('email').value,
+      phone: document.getElementById('phone').value,
+      subject: document.getElementById('subject').value,
+      message: document.getElementById('message').value,
+    };
+
+    try {
+      const response = await fetch('http://your-hostinger-server-url/submit', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+
+      if (response.ok) {
+        alert('Data submitted successfully');
+      } else {
+        alert('Failed to submit data');
+      }
+    } catch (error) {
+      console.error('Error:', error);
+      alert('Error submitting data');
+    }
+  };
+
+
 
   return (
     <>
@@ -14,7 +46,7 @@ function ContactUs() {
             <h2>We are here to help you!</h2>
             <div className="row d-flex justify-content-between align-items-center mt-4">
               <div className="col-md-7">
-                <form>
+                <form onSubmit={handleSubmit}>
                   <div className="row">
                     {/* Left column inputs */}
                     <div className="col-md-6 mb-3">
