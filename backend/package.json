@@ -1,5 +1,5 @@
 {
-    "name": "golden-royce-backend",
+    "name": "aionion-backend",
     "version": "0.1.0",
     "main": "server.js",
     "scripts": {
@@ -12,6 +12,8 @@
         "express": "^4.21.1",
         "mongodb": "^6.5.0",
         "mongoose": "^8.4.0",
-        "mysql2": "^3.11.4"
+        "mysql2": "^3.11.4",
+        "nodemailer": "^6.9.16",
+        "twilio": "^5.3.6"
     }
 }
