@@ -18,9 +18,9 @@ const Home = () => {
           <p className='mt-4 pt-3 w-75'>Explore stockbroking made simple with Aionion Capital. Seamlessly navigate opportunities with tools and support designed for every investor.</p>
 
           <div className='d-flex gap-4 mt-4 btn'>
-            <Link to='/Dashboard'>
+            <Link to='/Login'>
             <button>Log In </button></Link>
-            <Link to='/Dashboard'>
+            <Link to='/Signup'>
             <button>Sign Up</button></Link>
           </div>
 
