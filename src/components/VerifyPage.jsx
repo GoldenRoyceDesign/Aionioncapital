@@ -1,16 +1,20 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom'; // Import useNavigate for redirection
 import './verifypage.css';
 
 const VerifyPage = ({ mobile, email }) => {
-    const [mobileOtp, setMobileOtp] = useState(Array(6).fill(''));
-    const [emailOtp, setEmailOtp] = useState(Array(6).fill(''));
+    const [mobileOtp, setMobileOtp] = useState(Array(4).fill(''));
+    const [emailOtp, setEmailOtp] = useState(Array(4).fill(''));
     const [mobileVerified, setMobileVerified] = useState(false);
     const [emailVerified, setEmailVerified] = useState(false);
     const [mobileCountdown, setMobileCountdown] = useState(180);
     const [emailCountdown, setEmailCountdown] = useState(180);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState('');
+    // const [redirectToDashboard, setRedirectToDashboard] = useState(false);
+
+    const navigate = useNavigate(); // Declare navigate to use for redirection
 
     // Handle OTP input
     const handleOtpChange = (e, index, type) => {
@@ -19,10 +23,16 @@ const VerifyPage = ({ mobile, email }) => {
             const newOtp = [...mobileOtp];
             newOtp[index] = value;
             setMobileOtp(newOtp);
+            if (index === 3 && newOtp.every((digit) => digit !== '')) {
+                verifyOtp('mobile');  // Verify when all digits are entered
+            }
         } else {
             const newOtp = [...emailOtp];
             newOtp[index] = value;
             setEmailOtp(newOtp);
+            if (index === 3 && newOtp.every((digit) => digit !== '')) {
+                verifyOtp('email');  // Verify when all digits are entered
+            }
         }
     };
 
@@ -41,26 +51,60 @@ const VerifyPage = ({ mobile, email }) => {
         }
     }, [emailCountdown]);
 
-    // Verify OTP API call
     const verifyOtp = async (type) => {
         setLoading(true);
         setError('');
+    
         const otp = type === 'mobile' ? mobileOtp.join('') : emailOtp.join('');
+    
+        if (!otp) {
+            setError('OTP is required.');
+            setLoading(false);
+            return;
+        }
+    
+        // Prepare request data based on type (mobile or email)
+        let requestData = {};
+        if (type === 'mobile') {
+            requestData = { mobile, otp };
+        } else if (type === 'email') {
+            requestData = { email, otp };
+        }
+    
+        // Ensure that either mobile or email is provided
+        if (!requestData[type]) {
+            setError(`${type.charAt(0).toUpperCase() + type.slice(1)} is required.`);
+            setLoading(false);
+            return;
+        }
+    
         try {
-            const response = await axios.post('https://aionion-capital.onrender.com/verifyOtp', { mobile, email, otp });
-            if (response.data === 'OTP verified successfully!') {
+            const response = await axios.post('http://localhost:5000/verifyOtp', requestData);
+            console.log(response.data);
+    
+            // If verification is successful, mark the type as verified
+            if (response.data === `${type.charAt(0).toUpperCase() + type.slice(1)} OTP verified successfully!`) {
                 if (type === 'mobile') setMobileVerified(true);
                 else setEmailVerified(true);
             } else {
                 setError('Invalid OTP or OTP expired');
             }
         } catch (error) {
-            setError('An error occurred during OTP verification');
+            console.error('Error during OTP verification:', error);
+            if (error.response) {
+                setError(`Error: ${error.response.data}`);
+            } else {
+                setError('An error occurred during OTP verification');
+            }
         } finally {
             setLoading(false);
         }
     };
-
+    
+    
+    
+    
+    
     // Resend OTP
     const resendOtp = async (type) => {
         setError('');
@@ -77,7 +121,14 @@ const VerifyPage = ({ mobile, email }) => {
         }
     };
 
-    const isOtpComplete = (otpArray) => otpArray.every((digit) => digit !== '');
+    // Handle redirect to dashboard
+    const handleDashboardRedirect = () => {
+        if (mobileVerified && emailVerified) {
+            navigate('/dashboard'); // Use navigate to redirect to the dashboard
+        } else {
+            setError('Please verify both OTPs to proceed.');
+        }
+    };
 
     return (
         <div className="verify-page">
@@ -153,21 +204,18 @@ const VerifyPage = ({ mobile, email }) => {
 
             {/* Error/Success Messages */}
             {error && <p className="error-text">{error}</p>}
+
+            {/* Go to Dashboard button */}
             <button
-                onClick={() => {
-                    if (isOtpComplete(mobileOtp) && isOtpComplete(emailOtp)) {
-                        verifyOtp('mobile');
-                        verifyOtp('email');
-                    } else {
-                        setError('Please enter valid OTPs');
-                    }
-                }}
-                disabled={!isOtpComplete(mobileOtp) || !isOtpComplete(emailOtp) || loading}
+                onClick={handleDashboardRedirect}
+                disabled={!mobileVerified || !emailVerified || loading}
             >
-                {loading ? 'Verifying...' : 'Verify'}
+                Go to Dashboard
             </button>
         </div>
     );
 };
 
 export default VerifyPage;
+
+

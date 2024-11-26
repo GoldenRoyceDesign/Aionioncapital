@@ -12,13 +12,13 @@ import '../App.css'
 const File = () => {
   const files = [
     { name: 'CLIENT REGISTRATION ADDITIONAL DOCUMENTS - VERNACULAR LANGUAGES', url: VernacularLanguagesForm },
-    { name: 'Financial Details Updation Form.docx', url: FinancialDoc },
-    { name: 'Grievances Redressal Procedure.docx', url: GrievancesDoc },
-    { name: 'Investors attention.docx', url: InvestorsDoc },
-    { name: 'Modification form.docx', url: ModificationDoc },
-    { name: 'Nomination Form.docx', url: NominationDoc },
-    { name: 'RIGHTS AND OBLIGATIONS OF STOCK BROKERS.docx', url: RightsObligationsDoc },
-    { name: 'Trading Account Closure form.docx', url: TradingClosureDoc },
+    { name: 'FINANCIAL DETAILS UPDATION FORM.DOCX', url: FinancialDoc },
+    { name: 'GRIEVANCES REDRESSAL PROCEDURE. DOCX', url: GrievancesDoc },
+    { name: 'INVESTORS ATTENTION.DOCX', url: InvestorsDoc },
+    { name: 'MODIFICATION FORM. DOCX ', url: ModificationDoc },
+    { name: 'NOMINATION FORM.DOCX ', url: NominationDoc },
+    { name: 'RIGHTS AND OBLIGATIONS OF STOCK BROKERS.DOCX', url: RightsObligationsDoc },
+    { name: 'TRADING ACCOUNT CLOSURE FORM.DOCX', url: TradingClosureDoc },
   ];
 
   return (

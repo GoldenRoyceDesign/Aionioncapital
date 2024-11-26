@@ -82,9 +82,9 @@ const AboutUs = () => {
       </section>
 
       <section className='team mt-5'>
-        <h1 className='text-center'>Meet the Team</h1>
+        <h1 className='text-center' style={{fontWeight: '600'}}>Meet the Team</h1>
         <div className="team-head m-4 pt-3 text-center">
-          <h3>
+          <h3 style={{fontWeight: '600'}}>
             Details of Key Managerial Personnel (KMPs) Including Compliance Officer</h3>
           <p className='mt-4'>Detailed list of individuals authorized to act on behalf of Aionion Capital Market Services Private Limited, including their contact details.</p>
 
@@ -192,6 +192,60 @@ const AboutUs = () => {
             </div>
           </div>
         </div>
+      </section>
+
+      <section className='container mt-5 mb-5'>
+        <h2 style={{ color: '#094E8F', fontWeight: '600' }}>Basic Details</h2>
+
+        <div className='mt-4 basicdetail'>
+          <table>
+            <tr>
+              <td>Name</td>
+              <td>M/s. AIONION CAPITAL MARKET SERVICES PRIVATE LIMITED</td>
+            </tr>
+            <tr>
+              <td>Address</td>
+              <td>3RD FLOOR, MEERLAN TOWERS, NO.33, HANUMANTHA ROAD, ROYAPETTAH, CHENNAI - 600014</td>
+            </tr>
+            <tr>
+              <td>Mail id</td>
+              <td><a href="mailto:compliance@aionioncapital.com" style={{ color: 'white', textDecoration: 'none' }}>compliance@aionioncapital.com</a></td>
+            </tr>
+            <tr>
+
+              <td>Company PAN</td>
+              <td>ABACA2285K</td>
+            </tr>
+            <tr>
+              <td>SEBI Registration Number</td>
+              <td>INZ000318532 - Date: 28.06.2024</td>
+            </tr>
+            <tr>
+              <td>GST Registration Number</td>
+              <td>33ABACA2285K1ZR</td>
+            </tr>
+            <tr>
+              <td>CIN</td>
+              <td>U66120TN2024PTC167864</td>
+            </tr>
+            <tr>
+              <td>TAN</td>
+              <td>CHEA37281G</td>
+            </tr>
+            <tr>
+              <td>BSE</td>
+              <td>6878</td>
+            </tr>
+            <tr>
+              <td>NSE</td>
+              <td>90405</td>
+            </tr>
+          </table>
+        </div>
+
+        <h2 className='mt-4 mb-4' style={{ color: '#094E8F', fontWeight: '600' }}>Compliance Information</h2>
+        <p>All account information is protected under stringent SEBI regulations to ensure the security and privacy of 
+        our investors</p>
       </section>
     </>
   )

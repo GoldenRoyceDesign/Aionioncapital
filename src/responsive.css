@@ -70,6 +70,51 @@
         /* Adjusts padding for text readability */
     }
 
+    /* Make table rows stack vertically on small screens */
+  .basicdetail table, .basicdetail td, .basicdetail th {
+    display: block;
+    width: 100%;
+  }
+
+  /* Remove the horizontal lines between rows for mobile */
+  .basicdetail tr {
+    display: flex;
+    flex-direction: column;
+    border-radius: 8px;
+  }
+
+  /* Style the table cells for better readability on small screens */
+  .basicdetail td {
+    padding: 8px;
+    font-size: 14px;
+  }
+
+  /* Make the first column stand out */
+  .basicdetail td:first-child {
+    font-weight: 500;
+  }
+
+  /* Remove any borders or excessive padding in mobile view */
+  .basicdetail td a {
+    text-decoration: none;
+  }
+
+  /* Adjust the table headings for mobile */
+  .basicdetail th {
+    display: none;
+  }
+
+  /* Adjust margins for better spacing */
+  .basicdetail p {
+    font-size: 14px;
+    padding: 0 10px;
+  }
+
+  .resource{
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+
     .contact .row > .col-md-6 {
         margin-bottom: 15px;
     }
@@ -93,6 +138,15 @@
     .team .team-container{
         margin: 10px !important;
     }
+
+    .email-link {
+        display: inline-block; /* Required for ellipsis to work */
+        max-width: 100%; /* Limit the width of the link */
+        white-space: nowrap; /* Prevent text from wrapping */
+        overflow: hidden; /* Hide overflowed text */
+        text-overflow: ellipsis; /* Add ellipsis to overflowing text */
+        color: #4B4949;
+      }
 }
 
 

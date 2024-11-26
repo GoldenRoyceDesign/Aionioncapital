@@ -9,15 +9,34 @@ const Signup = () => {
     const [mobile, setMobile] = useState('');
     const [email, setEmail] = useState('');
     const [otpSent, setOtpSent] = useState(false); // OTP sent status
+    const [error, setError] = useState(null); // Error state to display errors
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
         if (mobile && email) {
-            // Trigger OTP sending logic here
-            setOtpSent(true); // Mark OTP as sent
-            // Simulating OTP sending action
-            alert('OTP sent to mobile and email!');
-            navigate('/VerifyPage', { state: { mobile, email } });
+            try {
+                // Make API request to send OTP
+                const response = await fetch('http://localhost:5000/sendOtp', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ mobile, email }),
+                });
+
+                const result = await response.json();
+
+                if (response.status === 200) {
+                    setOtpSent(true); // Mark OTP as sent
+                    alert('OTP sent to mobile and email!');
+                    navigate('/VerifyPage', { state: { mobile, email } });
+                } else {
+                    setError(result.message || 'An error occurred. Please try again.');
+                }
+            } catch (err) {
+                console.error('Error sending OTP:', err);
+                setError('An error occurred while sending OTP.');
+            }
         } else {
             alert('Please enter both mobile and email.');
         }
@@ -42,6 +61,8 @@ const Signup = () => {
                                 <h2>Get started now</h2>
                                 <h2 style={{ color: '#3B3AF8' }}>Sign Up</h2>
                             </div>
+
+                            {error && <div className="error-message">{error}</div>} {/* Display error if exists */}
 
                             <form onSubmit={handleSubmit}>
                                 <div>
@@ -83,3 +104,5 @@ const Signup = () => {
 };
 
 export default Signup;
+
+
