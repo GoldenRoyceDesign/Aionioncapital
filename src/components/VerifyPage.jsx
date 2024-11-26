@@ -79,7 +79,7 @@ const VerifyPage = ({ mobile, email }) => {
         }
     
         try {
-            const response = await axios.post('http://localhost:5000/verifyOtp', requestData);
+            const response = await axios.post('https://aionion-capital.onrender.com/verifyOtp', requestData);
             console.log(response.data);
     
             // If verification is successful, mark the type as verified

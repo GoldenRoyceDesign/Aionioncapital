@@ -16,7 +16,7 @@ const Signup = () => {
         if (mobile && email) {
             try {
                 // Make API request to send OTP
-                const response = await fetch('http://localhost:5000/sendOtp', {
+                const response = await fetch('https://aionion-capital.onrender.com/sendOtp', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
