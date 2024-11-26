@@ -64,6 +64,8 @@ app.post('/sendOtp', async (req, res) => {
 });
 
 
+
+
 // Endpoint to verify OTP
 app.post('/verifyOtp', async (req, res) => {
     const { mobile, email, otp } = req.body;
@@ -104,7 +106,6 @@ app.post('/verifyOtp', async (req, res) => {
         res.status(500).send('Error verifying OTP');
     }
 });
-
 
 
 
