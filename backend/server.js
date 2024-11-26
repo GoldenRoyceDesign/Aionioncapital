@@ -30,8 +30,7 @@ app.post('/sendOtp', async (req, res) => {
     try {
         if (mobile) {
             // Send OTP via Twilio (SMS)
-            const twilioResponse = await twilioClient.verify
-                .services(process.env.TWILIO_SERVICE_SID)
+            const twilioResponse = await twilioClient.verify.v2.services(process.env.TWILIO_SERVICE_SID)
                 .verifications.create({
                     to: mobile,
                     channel: 'sms',
