@@ -28,6 +28,7 @@ function Navigationbar() {
             <Nav.Link as={Link} to="/AboutUs" onClick={handleClose}>About Us</Nav.Link>
             <Nav.Link as={Link} to="/Resources" onClick={handleClose}>Resources</Nav.Link>
             <Nav.Link as={Link} to="/ContactUs" onClick={handleClose}>Contact Us</Nav.Link>
+            <Nav.Link as={Link} to="/privacy-policy" onClick={handleClose}>Privacy Policy</Nav.Link>
           </Nav>
         </Navbar.Collapse>
       </Container>

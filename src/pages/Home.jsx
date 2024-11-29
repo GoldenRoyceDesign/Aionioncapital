@@ -3,7 +3,7 @@ import homeImg1 from '../assets/home-section1.png'
 import homeImg2 from '../assets/home-section2.png'
 import homeImg3 from '../assets/demat.png'
 import File from '../components/File'
-import { Link } from 'react-router-dom'
+// import { Link } from 'react-router-dom'
 
 const Home = () => {
 
@@ -12,16 +12,16 @@ const Home = () => {
     <>
       <section>
         <div className="pt-3 pb-3 home p-3">
-          <h1 className='mt-4'>"Empowering Investors,</h1>
-          <h1 className='mt-3'>Enabling Access"</h1>
+          <h1 className='mt-4'>Get ready to explore</h1>
+          <h1 className='mt-3'>new horizons in investing.</h1>
 
-          <p className='mt-4 pt-3 w-75'>Explore stockbroking made simple with Aionion Capital. Seamlessly navigate opportunities with tools and support designed for every investor.</p>
+          <p className='mt-4 pt-3 w-75'>Aionion Capital Market Services is coming soon!</p>
 
           <div className='d-flex gap-4 mt-4 btn'>
-            <Link to='/Login'>
-            <button>Log In </button></Link>
-            <Link to='/Signup'>
-            <button>Sign Up</button></Link>
+            {/* <Link to='/Login'>
+            <button>Log In </button></Link> */}
+            
+            <button style={{background: 'linear-gradient(to right, #3B3AF8 10%, #232292 100%)', color: 'white'}}>Launching Soon</button>
           </div>
 
           <div className='mt-5 d-flex justify-content-center align-items-center'>

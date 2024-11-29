@@ -4,8 +4,8 @@ import about from '../assets/about.png'
 import carousel1 from '../assets/carousel1.png'
 import carousel2 from '../assets/carousel2.png'
 import carousel3 from '../assets/carousel3.png'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faLinkedinIn } from '@fortawesome/free-brands-svg-icons'
+// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+// import { faLinkedinIn } from '@fortawesome/free-brands-svg-icons'
 
 const AboutUs = () => {
   return (
@@ -18,8 +18,9 @@ const AboutUs = () => {
         <div className='about-container p-5'>
           <h5>Aionion Capital Market Services Private Limited
           </h5>
-          <p>Is a leading stockbroking company
-            headquartered in Chennai. With a steadfast commitment to empowering investors, we focus on
+          <p>We are a new-age stockbroking company from Chennai, here to simplify your investment journey.</p>
+          <p>
+            With a steadfast commitment to empowering investors, we focus on
             creating informed investment communities and facilitating seamless access to financial markets.
             As a trusted partner, we aim to bridge the gap between individuals and the opportunities within
             the capital markets.</p>
@@ -82,9 +83,9 @@ const AboutUs = () => {
       </section>
 
       <section className='team mt-5'>
-        <h1 className='text-center' style={{fontWeight: '600'}}>Meet the Team</h1>
+        <h1 className='text-center' style={{ fontWeight: '600' }}>Meet the Team</h1>
         <div className="team-head m-4 pt-3 text-center">
-          <h3 style={{fontWeight: '600'}}>
+          <h3 style={{ fontWeight: '600' }}>
             Details of Key Managerial Personnel (KMPs) Including Compliance Officer</h3>
           <p className='mt-4'>Detailed list of individuals authorized to act on behalf of Aionion Capital Market Services Private Limited, including their contact details.</p>
 
@@ -102,9 +103,9 @@ const AboutUs = () => {
                       rel="noopener noreferrer"
                       className="icon-link"
                     >
-                      <div className="icon-circle">
+                      {/* <div className="icon-circle">
                         <FontAwesomeIcon icon={faLinkedinIn} size="lg" />
-                      </div>
+                      </div> */}
                     </a>
                   </div>
                 </div>
@@ -122,9 +123,9 @@ const AboutUs = () => {
                       rel="noopener noreferrer"
                       className="icon-link"
                     >
-                      <div className="icon-circle">
+                      {/* <div className="icon-circle">
                         <FontAwesomeIcon icon={faLinkedinIn} size="lg" />
-                      </div>
+                      </div> */}
                     </a>
                   </div>
                 </div>
@@ -142,9 +143,9 @@ const AboutUs = () => {
                       rel="noopener noreferrer"
                       className="icon-link"
                     >
-                      <div className="icon-circle">
+                      {/* <div className="icon-circle">
                         <FontAwesomeIcon icon={faLinkedinIn} size="lg" />
-                      </div>
+                      </div> */}
                     </a>
                   </div>
                 </div>
@@ -152,7 +153,7 @@ const AboutUs = () => {
 
               <div className="col-md-4 mb-4">
                 <div className="team-member">
-                  <h5>Ariyapadi Srinivasan</h5>
+                  <h5>Ariyapadi Srinivasan Rajasekaran</h5>
                   <p>Director</p>
                   <p><a href='mailto:rajasekaran.s@aionioncapital.com' style={{ color: '#4B4949' }} className="email-link">rajasekaran.s@aionioncapital.com</a></p>
                   <div className="linkedin-icon">
@@ -162,15 +163,15 @@ const AboutUs = () => {
                       rel="noopener noreferrer"
                       className="icon-link"
                     >
-                      <div className="icon-circle">
+                      {/* <div className="icon-circle">
                         <FontAwesomeIcon icon={faLinkedinIn} size="lg" />
-                      </div>
+                      </div> */}
                     </a>
                   </div>
                 </div>
               </div>
 
-              <div className="col-md-4 mb-4">
+              {/* <div className="col-md-4 mb-4">
                 <div className="team-member">
                   <h5>Saravanan</h5>
                   <p>Compliance Officer</p>
@@ -188,7 +189,7 @@ const AboutUs = () => {
                     </a>
                   </div>
                 </div>
-              </div>
+              </div> */}
             </div>
           </div>
         </div>
@@ -205,7 +206,8 @@ const AboutUs = () => {
             </tr>
             <tr>
               <td>Address</td>
-              <td>3RD FLOOR, MEERLAN TOWERS, NO.33, HANUMANTHA ROAD, ROYAPETTAH, CHENNAI - 600014</td>
+              <td>3rd Floor, Meerlan Towers, No.33, Hanumantha Road, 
+              Royapettah, Chennai - 600 014</td>
             </tr>
             <tr>
               <td>Mail id</td>
@@ -218,7 +220,7 @@ const AboutUs = () => {
             </tr>
             <tr>
               <td>SEBI Registration Number</td>
-              <td>INZ000318532 - Date: 28.06.2024</td>
+              <td>INZ000318532</td>
             </tr>
             <tr>
               <td>GST Registration Number</td>
@@ -233,19 +235,19 @@ const AboutUs = () => {
               <td>CHEA37281G</td>
             </tr>
             <tr>
-              <td>BSE</td>
+              <td>BSE Member Code</td>
               <td>6878</td>
             </tr>
             <tr>
-              <td>NSE</td>
+              <td>NSE Member Code</td>
               <td>90405</td>
             </tr>
           </table>
         </div>
 
         <h2 className='mt-4 mb-4' style={{ color: '#094E8F', fontWeight: '600' }}>Compliance Information</h2>
-        <p>All account information is protected under stringent SEBI regulations to ensure the security and privacy of 
-        our investors</p>
+        <p>All account information is protected under stringent SEBI regulations to ensure the security and privacy of
+          our investors</p>
       </section>
     </>
   )
