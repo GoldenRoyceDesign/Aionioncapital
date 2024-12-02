@@ -190,144 +190,91 @@
 
 const express = require('express');
 const mysql = require('mysql2');
-const nodemailer = require('nodemailer');
-const twilio = require('twilio');
-const dotenv = require('dotenv');
-const crypto = require('crypto');
-const cors = require('cors');
+const bcrypt = require('bcryptjs');
+const jwt = require('jsonwebtoken');
+const bodyParser = require('body-parser');
 
-dotenv.config();
-
+// Setup Express
 const app = express();
-app.use(express.json());
-app.use(cors());
+const PORT = 5000;
 
-// Database connection
+// Middlewares
+app.use(bodyParser.json());
+
+// MySQL database connection
 const db = mysql.createConnection({
-  host: process.env.DB_HOST,
-  user: process.env.DB_USER,
-  password: process.env.DB_PASSWORD,
-  database: process.env.DB_NAME,
+    host: 'localhost',
+    user: 'AionionCapital',
+    password: '*lfUtj3G#k7',
+    database: 'AiLogin'
 });
 
 db.connect(err => {
-  if (err) {
-    console.error('Database connection failed:', err.stack);
-    return;
-  }
-  console.log('Connected to database');
+    if (err) throw err;
+    console.log('Connected to MySQL database');
 });
 
-// Email and SMS OTP functions
-const transporter = nodemailer.createTransport({
-  service: 'gmail',
-  auth: {
-    user: process.env.EMAIL_USER,
-    pass: process.env.EMAIL_PASS,
-  },
-});
+// Register (Signup)
+app.post('/signup', async (req, res) => {
+    const { email, password } = req.body;
 
-const twilioClient = twilio(process.env.TWILIO_ACCOUNT_SID, process.env.TWILIO_AUTH_TOKEN);
-
-function generateOtp() {
-  return Math.floor(100000 + Math.random() * 900000); // 6-digit OTP
-}
-
-// Endpoint to send email OTP
-app.post('/send-email-otp', (req, res) => {
-  const { email } = req.body;
-  const otp = generateOtp();
-
-  db.query('UPDATE users SET email_otp = ?, email_verified = FALSE WHERE email = ?', [otp, email], (err) => {
-    if (err) {
-      return res.status(500).send('Error saving OTP to database');
+    if (!email || !password) {
+        return res.status(400).json({ message: 'Email and password are required' });
     }
 
-    const mailOptions = {
-      from: process.env.EMAIL_USER,
-      to: email,
-      subject: 'Your OTP Code',
-      text: `Your OTP code is: ${otp}`,
-    };
+    try {
+        // Hash password
+        const hashedPassword = await bcrypt.hash(password, 10);
 
-    transporter.sendMail(mailOptions, (error, info) => {
-      if (error) {
-        return res.status(500).send('Error sending OTP via email');
-      }
-      res.send('OTP sent to email');
+        // Store in database
+        db.query('INSERT INTO users (email, password) VALUES (?, ?)', [email, hashedPassword], (err, result) => {
+            if (err) {
+                console.log(err);
+                return res.status(500).json({ message: 'Error signing up user' });
+            }
+            // On success, send back success message
+            res.status(201).json({ message: 'User registered successfully', redirectTo: '/dashboard' });
+        });
+    } catch (err) {
+        res.status(500).json({ message: 'Error hashing password' });
+    }
+});
+
+// Login
+app.post('/login', (req, res) => {
+    const { email, password } = req.body;
+
+    if (!email || !password) {
+        return res.status(400).json({ message: 'Email and password are required' });
+    }
+
+    db.query('SELECT * FROM users WHERE email = ?', [email], async (err, result) => {
+        if (err) {
+            return res.status(500).json({ message: 'Error checking user' });
+        }
+
+        if (result.length === 0) {
+            return res.status(400).json({ message: 'User not found' });
+        }
+
+        const user = result[0];
+
+        // Compare password
+        const isMatch = await bcrypt.compare(password, user.password);
+
+        if (!isMatch) {
+            return res.status(400).json({ message: 'Invalid credentials' });
+        }
+
+        // Generate JWT token
+        const token = jwt.sign({ id: user.id, email: user.email }, 'your_jwt_secret_key', { expiresIn: '1h' });
+
+        // Send success response with token
+        res.status(200).json({ message: 'Login successful', token });
     });
-  });
 });
 
-// Endpoint to send phone OTP
-app.post('/send-phone-otp', (req, res) => {
-  const { phone } = req.body;
-  const otp = generateOtp();
-
-  db.query('UPDATE users SET phone_otp = ?, phone_verified = FALSE WHERE phone = ?', [otp, phone], (err) => {
-    if (err) {
-      return res.status(500).send('Error saving OTP to database');
-    }
-
-    twilioClient.messages.create({
-      body: `Your OTP code is: ${otp}`,
-      from: process.env.TWILIO_PHONE_NUMBER,
-      to: phone,
-    })
-    .then(message => res.send('OTP sent to phone'))
-    .catch(err => res.status(500).send('Error sending OTP via SMS'));
-  });
+// Start the server
+app.listen(PORT, () => {
+    console.log(`Server running on http://localhost:${PORT}`);
 });
-
-// Endpoint to verify email OTP
-app.post('/verify-email-otp', (req, res) => {
-  const { email, otp } = req.body;
-
-  db.query('SELECT email_otp FROM users WHERE email = ?', [email], (err, results) => {
-    if (err || results.length === 0) {
-      return res.status(404).send('Email not found');
-    }
-
-    const storedOtp = results[0].email_otp;
-    if (storedOtp === otp) {
-      db.query('UPDATE users SET email_verified = TRUE WHERE email = ?', [email], (updateErr) => {
-        if (updateErr) {
-          return res.status(500).send('Error updating email verification status');
-        }
-        res.send('Email verified successfully');
-      });
-    } else {
-      res.status(400).send('Invalid OTP');
-    }
-  });
-});
-
-// Endpoint to verify phone OTP
-app.post('/verify-phone-otp', (req, res) => {
-  const { phone, otp } = req.body;
-
-  db.query('SELECT phone_otp FROM users WHERE phone = ?', [phone], (err, results) => {
-    if (err || results.length === 0) {
-      return res.status(404).send('Phone number not found');
-    }
-
-    const storedOtp = results[0].phone_otp;
-    if (storedOtp === otp) {
-      db.query('UPDATE users SET phone_verified = TRUE WHERE phone = ?', [phone], (updateErr) => {
-        if (updateErr) {
-          return res.status(500).send('Error updating phone verification status');
-        }
-        res.send('Phone verified successfully');
-      });
-    } else {
-      res.status(400).send('Invalid OTP');
-    }
-  });
-});
-
-// Start server
-const port = process.env.PORT || 5000;
-app.listen(port, () => {
-  console.log(`Server is running on port ${port}`);
-});
-

@@ -146,19 +146,20 @@ const Signup = () => {
 
 
     const [email, setEmail] = useState('');
-  const [phone, setPhone] = useState('');
+  const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const navigate = useNavigate();
 
   const handleSignup = async (e) => {
     e.preventDefault();
+
     try {
-      // Send request to backend to send OTPs
-      await axios.post('https://aionion-capital.onrender.com/send-email-otp', { email });
-      await axios.post('https://aionion-capital.onrender.com/send-phone-otp', { phone });
-      navigate('/VerifyPage');
+      const response = await axios.post('https://aionion-capital.onrender.com/signup', { email, password });
+      if (response.data.redirectTo) {
+        navigate.push('/Dashboard'); // Redirect to dashboard on success
+      }
     } catch (err) {
-      setError('Error sending OTPs');
+      setError(err.response?.data?.message || 'An error occurred');
     }
   };
 
@@ -211,28 +212,24 @@ const Signup = () => {
 
 
 
-<form onSubmit={handleSignup}>
-      <div>
-        <label>Email:</label>
+{error && <p>{error}</p>}
+      <form onSubmit={handleSignup}>
         <input
           type="email"
+          placeholder="Email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           required
         />
-      </div>
-      <div>
-        <label>Phone:</label>
         <input
-          type="text"
-          value={phone}
-          onChange={(e) => setPhone(e.target.value)}
+          type="password"
+          placeholder="Password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
           required
         />
-      </div>
-      <button type="submit">Sign Up</button>
-      {error && <p>{error}</p>}
-    </form>
+        <button type="submit">Signup</button>
+      </form>
 
                             </div>
                         </div>

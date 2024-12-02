@@ -203,55 +203,50 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
-const VerifyPage = () => {
-  const [emailOtp, setEmailOtp] = useState('');
-  const [phoneOtp, setPhoneOtp] = useState('');
+const LoginPage = () => {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
   const [error, setError] = useState('');
-  const navigate = useNavigate();
+  const Navigate = useNavigate();
 
-  const handleVerify = async (e) => {
+  const handleLogin = async (e) => {
     e.preventDefault();
+
     try {
-      await axios.post('https://aionion-capital.onrender.com/verify-email-otp', {
-        email: 'divyaneela75@gmail.com',
-        otp: emailOtp,
-      });
-      await axios.post('https://aionion-capital.onrender.com/verify-phone-otp', {
-        phone: '+918903558873',
-        otp: phoneOtp,
-      });
-      navigate('/success');
+      const response = await axios.post('https://aionion-capital.onrender.com/login', { email, password });
+      localStorage.setItem('token', response.data.token); // Store token
+      Navigate.push('/Dashboard'); // Redirect to dashboard on success
     } catch (err) {
-      setError('Invalid OTPs');
+      setError(err.response?.data?.message || 'An error occurred');
     }
   };
 
   return (
-    <form onSubmit={handleVerify}>
-      <div>
-        <label>Email OTP:</label>
-        <input
-          type="text"
-          value={emailOtp}
-          onChange={(e) => setEmailOtp(e.target.value)}
-          required
-        />
-      </div>
-      <div>
-        <label>Phone OTP:</label>
-        <input
-          type="text"
-          value={phoneOtp}
-          onChange={(e) => setPhoneOtp(e.target.value)}
-          required
-        />
-      </div>
-      <button type="submit">Verify</button>
+    <div>
+      <h2>Login</h2>
       {error && <p>{error}</p>}
-    </form>
+      <form onSubmit={handleLogin}>
+        <input
+          type="email"
+          placeholder="Email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          required
+        />
+        <input
+          type="password"
+          placeholder="Password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+          required
+        />
+        <button type="submit">Login</button>
+      </form>
+    </div>
   );
 };
 
-export default VerifyPage;
+export default LoginPage;
+
 
 
