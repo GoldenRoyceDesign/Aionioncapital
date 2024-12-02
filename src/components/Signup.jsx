@@ -112,37 +112,55 @@ import { useNavigate } from 'react-router-dom'; // Import useNavigate
 import logo from '../assets/Logo_Aionion.png';
 import { Link } from 'react-router-dom';
 import signupLogin from '../assets/signup-login.png';
+import axios from 'axios';
 
 const Signup = () => {
-    const [email, setEmail] = useState('');
-    const [phone, setPhone] = useState('');
-    const [loading, setLoading] = useState(false);
-    const navigate = useNavigate();
+    // const [email, setEmail] = useState('');
+    // const [phone, setPhone] = useState('');
+    // const [loading, setLoading] = useState(false);
+    // const navigate = useNavigate();
 
-    const handleSignup = async (event) => {
-        event.preventDefault(); // Prevent default form submission
-        const data = { email, phone };
-        console.log('Sending data:', data); // Log data being sent to the server
-        try {
-            const response = await fetch('http://localhost:5000/send-otp', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(data),
-            });
-            if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
-            const result = await response.json();
-            console.log('Response:', result); // Log the response
-    
-            // Redirect to VerifyPage if OTP is sent successfully
-            if (result.success) {
-                console.log('Redirecting to VerifyPage');
-                navigate('/VerifyPage', { state: { email, phone, emailOtp: result.emailOtp, phoneOtp: result.phoneOtp } }); // Pass OTPs to VerifyPage
-            }
-        } catch (error) {
-            console.error('Error:', error);
-        }
-    };
-    
+    // const handleSignup = async (event) => {
+    //     event.preventDefault(); // Prevent default form submission
+    //     const data = { email, phone };
+    //     console.log('Sending data:', data); // Log data being sent to the server
+    //     try {
+    //         const response = await fetch('http://localhost:5000/send-otp', {
+    //             method: 'POST',
+    //             headers: { 'Content-Type': 'application/json' },
+    //             body: JSON.stringify(data),
+    //         });
+    //         if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
+    //         const result = await response.json();
+    //         console.log('Response:', result); // Log the response
+
+    //         // Redirect to VerifyPage if OTP is sent successfully
+    //         if (result.success) {
+    //             console.log('Redirecting to VerifyPage');
+    //             navigate('/VerifyPage', { state: { email, phone, emailOtp: result.emailOtp, phoneOtp: result.phoneOtp } }); // Pass OTPs to VerifyPage
+    //         }
+    //     } catch (error) {
+    //         console.error('Error:', error);
+    //     }
+    // };
+
+
+    const [email, setEmail] = useState('');
+  const [phone, setPhone] = useState('');
+  const [error, setError] = useState('');
+  const navigate = useNavigate();
+
+  const handleSignup = async (e) => {
+    e.preventDefault();
+    try {
+      // Send request to backend to send OTPs
+      await axios.post('http://localhost:5000/send-email-otp', { email });
+      await axios.post('http://localhost:5000/send-phone-otp', { phone });
+      navigate('/verify');
+    } catch (err) {
+      setError('Error sending OTPs');
+    }
+  };
 
     return (
         <>
@@ -165,9 +183,9 @@ const Signup = () => {
                                     <h2 style={{ color: '#3B3AF8' }}>Sign Up</h2>
                                 </div>
 
-                                
 
-                                <form onSubmit={handleSignup}>
+
+                                {/* <form onSubmit={handleSignup}>
                                     <div>
                                         <label>Mobile:</label>
                                         <input
@@ -189,7 +207,33 @@ const Signup = () => {
                                     <button type="submit" className='mt-5' disabled={loading}>
                                         {loading ? 'Sending OTPs...' : 'Send OTPs'}
                                     </button>
-                                </form>
+                                </form> */}
+
+
+
+<form onSubmit={handleSignup}>
+      <div>
+        <label>Email:</label>
+        <input
+          type="email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          required
+        />
+      </div>
+      <div>
+        <label>Phone:</label>
+        <input
+          type="text"
+          value={phone}
+          onChange={(e) => setPhone(e.target.value)}
+          required
+        />
+      </div>
+      <button type="submit">Sign Up</button>
+      {error && <p>{error}</p>}
+    </form>
+
                             </div>
                         </div>
                         <div className='col-md-6 signup-right p-5 text-white'>

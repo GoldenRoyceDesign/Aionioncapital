@@ -1,302 +1,333 @@
+
+
+
 // const express = require('express');
+// const bodyParser = require('body-parser');
 // const nodemailer = require('nodemailer');
+// const twilio = require('twilio');
 // const dotenv = require('dotenv');
 // const cors = require('cors');
 // dotenv.config();
 
 // const app = express();
-// const twilioClient = require('twilio')(process.env.TWILIO_SID, process.env.TWILIO_AUTH_TOKEN);
 
 // app.use(express.json());
-// app.use(cors()); // Allow cross-origin requests
+// app.use(cors());
+// app.use(bodyParser.urlencoded({ extended: true }));
 
-// // Configure Nodemailer
-// const transporter = nodemailer.createTransport({
+// // Retrieve sensitive values from environment variables
+// const EMAIL_USER = process.env.EMAIL_USER;
+// const EMAIL_PASS = process.env.EMAIL_PASS;
+// const TWILIO_ACCOUNT_SID = process.env.TWILIO_ACCOUNT_SID;
+// const TWILIO_AUTH_TOKEN = process.env.TWILIO_AUTH_TOKEN;
+// const TWILIO_PHONE_NUMBER = process.env.TWILIO_PHONE_NUMBER;
+// const TWILIO_SERVICE_SID = process.env.TWILIO_SERVICE_SID;  // Make sure this is defined
+
+// // Temporary storage for OTPs (use a database for production)
+// const otpStorage = {};
+
+// // Create Nodemailer transporter
+// const emailTransporter = nodemailer.createTransport({
 //     service: 'gmail',
 //     auth: {
-//         user: process.env.EMAIL_USER,
-//         pass: process.env.EMAIL_PASS,
+//         user: EMAIL_USER,
+//         pass: EMAIL_PASS,
 //     },
 // });
 
-// // Endpoint to send OTP
-// app.post('/sendOtp', async (req, res) => {
-//     const { mobile, email } = req.body;
+// // Helper function to generate OTP
+// const generateOtp = () => Math.floor(1000 + Math.random() * 9000).toString();
 
-//     if (!mobile && !email) {
-//         return res.status(400).send('At least one of Mobile or Email is required.');
+// // Endpoint to send OTPs via email and SMS
+// app.post('/send-otp', async (req, res) => {
+//     const { email, phone } = req.body;
+//     if (!email || !phone) {
+//         return res.status(400).json({ success: false, error: 'Email and phone number are required.' });
 //     }
-    
 
 //     try {
-//         if (mobile) {
-//             try {
-//                 const twilioResponse = await twilioClient.verify.v2.services(
-//                     process.env.TWILIO_SERVICE_SID
-//                 ).verifications.create({ to: mobile, channel: 'sms' });
-//                 console.log(`SMS OTP sent to ${mobile}:`, twilioResponse);
-//             } catch (err) {
-//                 console.error('Twilio error:', err);
-//                 return res.status(500).json({ message: 'Failed to send SMS OTP.' });
-//             }
-//         }
+//         // Generate OTP for email
+//         const emailOtp = generateOtp();
+//         otpStorage[email] = emailOtp;  // Store email OTP in memory (or DB)
         
+//         // Send Email OTP (via email service like Nodemailer)
+//         await emailTransporter.sendMail({
+//             from: EMAIL_USER,
+//             to: email,
+//             subject: 'Your OTP',
+//             text: `Your OTP is: ${emailOtp}`,
+//         });
 
-//         if (email) {
-//             // Generate OTP for email
-//             const otp = Math.floor(1000 + Math.random() * 9000).toString(); // 6-digit OTP
+//         // Send phone OTP via Twilio
+//         const twilioClient = twilio(TWILIO_ACCOUNT_SID, TWILIO_AUTH_TOKEN);
+//         const twilioResponse = await twilioClient.verify.v2.services(TWILIO_SERVICE_SID)
+//             .verifications.create({ to: phone, channel: 'sms' });
 
-//             // Send OTP via email
-//             const mailOptions = {
-//                 from: process.env.EMAIL_USER,
-//                 to: email,
-//                 subject: 'Your OTP for verification',
-//                 text: `Your OTP is: ${otp}. It will expire in 5 minutes.`,
-//             };
-
-//             await transporter.sendMail(mailOptions);
-//             console.log(`Email OTP sent to ${email}`);
-//         }
-
-//         res.status(200).json({ message: 'OTP sent successfully!' });
-//     } catch (err) {
-//         console.error('Error sending OTP:', err);
-//         res.status(500).json({ message: 'Error sending OTP' });
+//         // Respond with both OTPs (optional for debugging, don't send actual OTPs to client in production)
+//         res.status(200).json({
+//             success: true,
+//             emailOtp: emailOtp,   // Send email OTP in response (only for debugging, not in production)
+//             phoneOtpSid: twilioResponse.sid // Optional for debugging
+//         });
+//     } catch (error) {
+//         console.error('Error sending OTP:', error.message);
+//         res.status(500).json({ success: false, error: 'Failed to send OTP.' });
 //     }
 // });
 
 
 
 
-// // Endpoint to verify OTP
-// app.post('/verifyOtp', async (req, res) => {
-//     const { mobile, email, otp } = req.body;
 
-//     if (!otp || (!mobile && !email)) {
-//         return res.status(400).send('Mobile or Email and OTP are required.');
+
+
+
+
+
+// app.post('/verify-otp', (req, res) => {
+//     const { email, phone, emailOtp, phoneOtp } = req.body;
+
+//     if (emailOtp) {
+//         // Validate the email OTP
+//         if (otpStorage[email] !== emailOtp) {
+//             return res.status(400).json({ success: false, message: 'Invalid email OTP' });
+//         }
+//         return res.json({ success: true, message: 'Email OTP verified successfully.' });
 //     }
 
-//     try {
-//         if (mobile) {
-//             // Verify OTP via Twilio for mobile
-//             const verification = await twilioClient.verify
-//                 .services(process.env.TWILIO_SERVICE_SID)
-//                 .verificationChecks.create({
-//                     to: mobile,
-//                     code: otp,
-//                 });
-
-//             if (verification.status === 'approved') {
-//                 return res.status(200).send('Mobile OTP verified successfully!');
-//             } else {
-//                 return res.status(400).send('Invalid Mobile OTP or OTP expired.');
-//             }
-//         }
-
-//         if (email) {
-//             // Add your email OTP verification logic here (e.g., using an email OTP service)
-//             const isEmailOtpValid = await verifyEmailOtp(email, otp);
-
-//             if (isEmailOtpValid) {
-//                 return res.status(200).send('Email OTP verified successfully!');
-//             } else {
-//                 return res.status(400).send('Invalid Email OTP or OTP expired.');
-//             }
-//         }
-//     } catch (err) {
-//         console.error('Error verifying OTP:', err);
-//         res.status(500).send('Error verifying OTP');
+//     if (phoneOtp) {
+//         // Validate the phone OTP using Twilio
+//         const twilioClient = twilio(TWILIO_ACCOUNT_SID, TWILIO_AUTH_TOKEN);
+//         twilioClient.verify.v2.services(TWILIO_SERVICE_SID)
+//             .verificationChecks.create({ to: phone, code: phoneOtp })
+//             .then((verificationCheck) => {
+//                 if (verificationCheck.status !== 'approved') {
+//                     return res.status(400).json({ success: false, message: 'Invalid phone OTP' });
+//                 }
+//                 return res.json({ success: true, message: 'Phone OTP verified successfully.' });
+//             })
+//             .catch((error) => {
+//                 console.error('Twilio error:', error);
+//                 return res.status(500).json({ success: false, message: 'Error verifying phone OTP' });
+//             });
 //     }
 // });
+
 
 
 
 // // Start the server
-// const PORT = process.env.PORT || 5000;
-// app.listen(PORT, () => {
-//     console.log(`Server running on port ${PORT}`);
+// app.listen(5000, () => {
+//     console.log('Server running on port 5000');
 // });
 
 
+
+
+// // // Endpoint to verify OTP
+// // app.post('/verify-otp', (req, res) => {
+// //     const { email, phone, emailOtp, phoneOtp } = req.body;
+
+// //     // Validate the email OTP
+// //     if (otpStorage[email] !== emailOtp) {
+// //         return res.status(400).json({ success: false, message: 'Invalid email OTP' });
+// //     }
+
+// //     // Validate the phone OTP using Twilio (check with Twilio SID)
+// //     const twilioClient = twilio(TWILIO_ACCOUNT_SID, TWILIO_AUTH_TOKEN);
+// //     twilioClient.verify.v2.services(TWILIO_SERVICE_SID)
+// //         .verificationChecks.create({ to: phone, code: phoneOtp })
+// //         .then((verificationCheck) => {
+// //             if (verificationCheck.status !== 'approved') {
+// //                 return res.status(400).json({ success: false, message: 'Invalid phone OTP' });
+// //             }
+            
+// //             // Both OTPs are valid, proceed with user registration or success
+// //             return res.json({ success: true, message: 'OTP verified successfully!' });
+// //         })
+// //         .catch((error) => {
+// //             console.error('Twilio error:', error);
+// //             return res.status(500).json({ success: false, message: 'Error verifying phone OTP' });
+// //         });
+// // });
+
+
+// // app.post('/send-otp-login', async (req, res) => {
+// //     const { email, phone } = req.body;
+
+// //     if (!email && !phone) {
+// //         return res.status(400).json({ success: false, error: 'Either email or phone number is required.' });
+// //     }
+
+// //     try {
+// //         if (email) {
+// //             // Generate and send email OTP
+// //             const emailOtp = generateOtp();
+// //             otpStorage[email] = emailOtp;
+// //             await emailTransporter.sendMail({
+// //                 from: EMAIL_USER,
+// //                 to: email,
+// //                 subject: 'Your OTP for Login',
+// //                 text: `Your OTP is: ${emailOtp}`,
+// //             });
+// //         }
+
+// //         if (phone) {
+// //             // Generate and send phone OTP
+// //             const twilioClient = twilio(TWILIO_ACCOUNT_SID, TWILIO_AUTH_TOKEN);
+// //             await twilioClient.verify.v2.services(TWILIO_SERVICE_SID)
+// //                 .verifications.create({ to: phone, channel: 'sms' });
+// //         }
+
+// //         res.status(200).json({ success: true, message: 'OTP sent for login.' });
+// //     } catch (error) {
+// //         console.error('Error sending OTP:', error.message);
+// //         res.status(500).json({ success: false, error: 'Failed to send OTP.' });
+// //     }
+// // });
 
 
 
 const express = require('express');
-const bodyParser = require('body-parser');
+const mysql = require('mysql2');
 const nodemailer = require('nodemailer');
 const twilio = require('twilio');
 const dotenv = require('dotenv');
+const crypto = require('crypto');
 const cors = require('cors');
+
 dotenv.config();
 
 const app = express();
-
 app.use(express.json());
 app.use(cors());
-app.use(bodyParser.urlencoded({ extended: true }));
 
-// Retrieve sensitive values from environment variables
-const EMAIL_USER = process.env.EMAIL_USER;
-const EMAIL_PASS = process.env.EMAIL_PASS;
-const TWILIO_ACCOUNT_SID = process.env.TWILIO_ACCOUNT_SID;
-const TWILIO_AUTH_TOKEN = process.env.TWILIO_AUTH_TOKEN;
-const TWILIO_PHONE_NUMBER = process.env.TWILIO_PHONE_NUMBER;
-const TWILIO_SERVICE_SID = process.env.TWILIO_SERVICE_SID;  // Make sure this is defined
-
-// Temporary storage for OTPs (use a database for production)
-const otpStorage = {};
-
-// Create Nodemailer transporter
-const emailTransporter = nodemailer.createTransport({
-    service: 'gmail',
-    auth: {
-        user: EMAIL_USER,
-        pass: EMAIL_PASS,
-    },
+// Database connection
+const db = mysql.createConnection({
+  host: process.env.DB_HOST,
+  user: process.env.DB_USER,
+  password: process.env.DB_PASSWORD,
+  database: process.env.DB_NAME,
 });
 
-// Helper function to generate OTP
-const generateOtp = () => Math.floor(1000 + Math.random() * 9000).toString();
-
-// Endpoint to send OTPs via email and SMS
-app.post('/send-otp', async (req, res) => {
-    const { email, phone } = req.body;
-    if (!email || !phone) {
-        return res.status(400).json({ success: false, error: 'Email and phone number are required.' });
-    }
-
-    try {
-        // Generate OTP for email
-        const emailOtp = generateOtp();
-        otpStorage[email] = emailOtp;  // Store email OTP in memory (or DB)
-        
-        // Send Email OTP (via email service like Nodemailer)
-        await emailTransporter.sendMail({
-            from: EMAIL_USER,
-            to: email,
-            subject: 'Your OTP',
-            text: `Your OTP is: ${emailOtp}`,
-        });
-
-        // Send phone OTP via Twilio
-        const twilioClient = twilio(TWILIO_ACCOUNT_SID, TWILIO_AUTH_TOKEN);
-        const twilioResponse = await twilioClient.verify.v2.services(TWILIO_SERVICE_SID)
-            .verifications.create({ to: phone, channel: 'sms' });
-
-        // Respond with both OTPs (optional for debugging, don't send actual OTPs to client in production)
-        res.status(200).json({
-            success: true,
-            emailOtp: emailOtp,   // Send email OTP in response (only for debugging, not in production)
-            phoneOtpSid: twilioResponse.sid // Optional for debugging
-        });
-    } catch (error) {
-        console.error('Error sending OTP:', error.message);
-        res.status(500).json({ success: false, error: 'Failed to send OTP.' });
-    }
+db.connect(err => {
+  if (err) {
+    console.error('Database connection failed:', err.stack);
+    return;
+  }
+  console.log('Connected to database');
 });
 
+// Email and SMS OTP functions
+const transporter = nodemailer.createTransport({
+  service: 'gmail',
+  auth: {
+    user: process.env.EMAIL_USER,
+    pass: process.env.EMAIL_PASS,
+  },
+});
 
+const twilioClient = twilio(process.env.TWILIO_ACCOUNT_SID, process.env.TWILIO_AUTH_TOKEN);
 
+function generateOtp() {
+  return Math.floor(100000 + Math.random() * 900000); // 6-digit OTP
+}
 
-// // Endpoint to verify OTP
-// app.post('/verify-otp', (req, res) => {
-//     const { email, phone, emailOtp, phoneOtp } = req.body;
+// Endpoint to send email OTP
+app.post('/send-email-otp', (req, res) => {
+  const { email } = req.body;
+  const otp = generateOtp();
 
-//     // Validate the email OTP
-//     if (otpStorage[email] !== emailOtp) {
-//         return res.status(400).json({ success: false, message: 'Invalid email OTP' });
-//     }
-
-//     // Validate the phone OTP using Twilio (check with Twilio SID)
-//     const twilioClient = twilio(TWILIO_ACCOUNT_SID, TWILIO_AUTH_TOKEN);
-//     twilioClient.verify.v2.services(TWILIO_SERVICE_SID)
-//         .verificationChecks.create({ to: phone, code: phoneOtp })
-//         .then((verificationCheck) => {
-//             if (verificationCheck.status !== 'approved') {
-//                 return res.status(400).json({ success: false, message: 'Invalid phone OTP' });
-//             }
-            
-//             // Both OTPs are valid, proceed with user registration or success
-//             return res.json({ success: true, message: 'OTP verified successfully!' });
-//         })
-//         .catch((error) => {
-//             console.error('Twilio error:', error);
-//             return res.status(500).json({ success: false, message: 'Error verifying phone OTP' });
-//         });
-// });
-
-
-app.post('/send-otp-login', async (req, res) => {
-    const { email, phone } = req.body;
-
-    if (!email && !phone) {
-        return res.status(400).json({ success: false, error: 'Either email or phone number is required.' });
+  db.query('UPDATE users SET email_otp = ?, email_verified = FALSE WHERE email = ?', [otp, email], (err) => {
+    if (err) {
+      return res.status(500).send('Error saving OTP to database');
     }
 
-    try {
-        if (email) {
-            // Generate and send email OTP
-            const emailOtp = generateOtp();
-            otpStorage[email] = emailOtp;
-            await emailTransporter.sendMail({
-                from: EMAIL_USER,
-                to: email,
-                subject: 'Your OTP for Login',
-                text: `Your OTP is: ${emailOtp}`,
-            });
+    const mailOptions = {
+      from: process.env.EMAIL_USER,
+      to: email,
+      subject: 'Your OTP Code',
+      text: `Your OTP code is: ${otp}`,
+    };
+
+    transporter.sendMail(mailOptions, (error, info) => {
+      if (error) {
+        return res.status(500).send('Error sending OTP via email');
+      }
+      res.send('OTP sent to email');
+    });
+  });
+});
+
+// Endpoint to send phone OTP
+app.post('/send-phone-otp', (req, res) => {
+  const { phone } = req.body;
+  const otp = generateOtp();
+
+  db.query('UPDATE users SET phone_otp = ?, phone_verified = FALSE WHERE phone = ?', [otp, phone], (err) => {
+    if (err) {
+      return res.status(500).send('Error saving OTP to database');
+    }
+
+    twilioClient.messages.create({
+      body: `Your OTP code is: ${otp}`,
+      from: process.env.TWILIO_PHONE_NUMBER,
+      to: phone,
+    })
+    .then(message => res.send('OTP sent to phone'))
+    .catch(err => res.status(500).send('Error sending OTP via SMS'));
+  });
+});
+
+// Endpoint to verify email OTP
+app.post('/verify-email-otp', (req, res) => {
+  const { email, otp } = req.body;
+
+  db.query('SELECT email_otp FROM users WHERE email = ?', [email], (err, results) => {
+    if (err || results.length === 0) {
+      return res.status(404).send('Email not found');
+    }
+
+    const storedOtp = results[0].email_otp;
+    if (storedOtp === otp) {
+      db.query('UPDATE users SET email_verified = TRUE WHERE email = ?', [email], (updateErr) => {
+        if (updateErr) {
+          return res.status(500).send('Error updating email verification status');
         }
+        res.send('Email verified successfully');
+      });
+    } else {
+      res.status(400).send('Invalid OTP');
+    }
+  });
+});
 
-        if (phone) {
-            // Generate and send phone OTP
-            const twilioClient = twilio(TWILIO_ACCOUNT_SID, TWILIO_AUTH_TOKEN);
-            await twilioClient.verify.v2.services(TWILIO_SERVICE_SID)
-                .verifications.create({ to: phone, channel: 'sms' });
+// Endpoint to verify phone OTP
+app.post('/verify-phone-otp', (req, res) => {
+  const { phone, otp } = req.body;
+
+  db.query('SELECT phone_otp FROM users WHERE phone = ?', [phone], (err, results) => {
+    if (err || results.length === 0) {
+      return res.status(404).send('Phone number not found');
+    }
+
+    const storedOtp = results[0].phone_otp;
+    if (storedOtp === otp) {
+      db.query('UPDATE users SET phone_verified = TRUE WHERE phone = ?', [phone], (updateErr) => {
+        if (updateErr) {
+          return res.status(500).send('Error updating phone verification status');
         }
-
-        res.status(200).json({ success: true, message: 'OTP sent for login.' });
-    } catch (error) {
-        console.error('Error sending OTP:', error.message);
-        res.status(500).json({ success: false, error: 'Failed to send OTP.' });
+        res.send('Phone verified successfully');
+      });
+    } else {
+      res.status(400).send('Invalid OTP');
     }
+  });
 });
 
-
-
-
-
-app.post('/verify-otp', (req, res) => {
-    const { email, phone, emailOtp, phoneOtp } = req.body;
-
-    if (emailOtp) {
-        // Validate the email OTP
-        if (otpStorage[email] !== emailOtp) {
-            return res.status(400).json({ success: false, message: 'Invalid email OTP' });
-        }
-        return res.json({ success: true, message: 'Email OTP verified successfully.' });
-    }
-
-    if (phoneOtp) {
-        // Validate the phone OTP using Twilio
-        const twilioClient = twilio(TWILIO_ACCOUNT_SID, TWILIO_AUTH_TOKEN);
-        twilioClient.verify.v2.services(TWILIO_SERVICE_SID)
-            .verificationChecks.create({ to: phone, code: phoneOtp })
-            .then((verificationCheck) => {
-                if (verificationCheck.status !== 'approved') {
-                    return res.status(400).json({ success: false, message: 'Invalid phone OTP' });
-                }
-                return res.json({ success: true, message: 'Phone OTP verified successfully.' });
-            })
-            .catch((error) => {
-                console.error('Twilio error:', error);
-                return res.status(500).json({ success: false, message: 'Error verifying phone OTP' });
-            });
-    }
+// Start server
+const port = process.env.PORT || 5000;
+app.listen(port, () => {
+  console.log(`Server is running on port ${port}`);
 });
 
-
-
-
-// Start the server
-app.listen(5000, () => {
-    console.log('Server running on port 5000');
-});
