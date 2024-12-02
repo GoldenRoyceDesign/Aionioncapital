@@ -212,12 +212,12 @@ const VerifyPage = () => {
   const handleVerify = async (e) => {
     e.preventDefault();
     try {
-      await axios.post('http://localhost:5000/verify-email-otp', {
-        email: 'user@example.com',
+      await axios.post('https://aionion-capital.onrender.com/verify-email-otp', {
+        email: 'divyaneela75@gmail.com',
         otp: emailOtp,
       });
-      await axios.post('http://localhost:5000/verify-phone-otp', {
-        phone: '+919876543210',
+      await axios.post('https://aionion-capital.onrender.com/verify-phone-otp', {
+        phone: '+918903558873',
         otp: phoneOtp,
       });
       navigate('/success');

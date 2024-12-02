@@ -154,8 +154,8 @@ const Signup = () => {
     e.preventDefault();
     try {
       // Send request to backend to send OTPs
-      await axios.post('http://localhost:5000/send-email-otp', { email });
-      await axios.post('http://localhost:5000/send-phone-otp', { phone });
+      await axios.post('https://aionion-capital.onrender.com/send-email-otp', { email });
+      await axios.post('https://aionion-capital.onrender.com/send-phone-otp', { phone });
       navigate('/verify');
     } catch (err) {
       setError('Error sending OTPs');
