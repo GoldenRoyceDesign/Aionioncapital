@@ -204,9 +204,9 @@ app.use(bodyParser.json());
 // MySQL database connection
 const db = mysql.createConnection({
     host: 'srv1473.hstgr.io',
-    user: 'AionionCapital',
+    user: 'u297469450_AionionCapital',
     password: '*lfUtj3G#k7',
-    database: 'AiLogin'
+    database: 'u297469450_AiLogin'
 });
 
 db.connect(err => {
