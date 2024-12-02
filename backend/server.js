@@ -203,7 +203,7 @@ app.use(bodyParser.json());
 
 // MySQL database connection
 const db = mysql.createConnection({
-    host: 'localhost',
+    host: 'srv1473.hstgr.io',
     user: 'AionionCapital',
     password: '*lfUtj3G#k7',
     database: 'AiLogin'
