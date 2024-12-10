@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react";
 import { useLocation, Link } from "react-router-dom";
 import logo from '../assets/Logo_Aionion.png';
 import signupLogin from '../assets/signup-login.png';
+import { useCallback } from "react";
 
 const VerifyPage = () => {
     const location = useLocation();
@@ -22,11 +23,7 @@ const VerifyPage = () => {
         return () => clearInterval(timer);
     }, []);
 
-    useEffect(() => {
-        if (otp.every((digit) => digit !== "")) {
-            validateOtp();
-        }
-    }, [otp]);
+   
 
     const handleOtpChange = (value, index) => {
         if (!/^[0-9]?$/.test(value)) return;
@@ -41,7 +38,14 @@ const VerifyPage = () => {
         }
     };
 
-    const validateOtp = async () => {
+    useEffect(() => {
+        if (otp.every((digit) => digit !== "")) {
+            validateOtp();
+        }
+    }, [otp, validateOtp]);
+    
+
+    const validateOtp = useCallback (async () => {
         if (otp.some((digit) => digit === "")) {
             setError("Please enter the full OTP.");
             return;
@@ -69,7 +73,9 @@ const VerifyPage = () => {
         } finally {
             setLoading(false);
         }
-    };
+    }, [otp, validateOtp]);
+
+    
 
     const resendOtp = async () => {
         setLoading(true);

@@ -497,6 +497,39 @@ app.post("/verify-otp", (req, res) => {
   res.status(400).json({ message: "Incorrect OTP or OTP expired." });
 });
 
+
+// Endpoint: /api/login
+app.post('/api/login', async (req, res) => {
+  const { email } = req.body;
+
+  // Validate if email exists
+  const user = await User.findOne({ email }); // Replace with your DB query
+  if (!user) {
+      return res.status(404).json({ message: 'Email not found.' });
+  }
+
+  // Send OTP logic
+  const otp = generateOtp(); // Replace with your OTP generation logic
+  await sendOtpToEmail(email, otp); // Replace with your OTP sending logic
+
+  res.status(200).json({ message: 'OTP sent to your email.' });
+});
+
+
+// Endpoint: /api/kyc-status
+app.get('/api/kyc-status', async (req, res) => {
+  const { userId } = req.query;
+
+  // Fetch KYC status
+  const user = await User.findById(userId); // Replace with your DB query
+  if (!user) {
+      return res.status(404).json({ message: 'User not found.' });
+  }
+
+  res.status(200).json({ kycComplete: user.kycComplete, name: user.name });
+});
+
+
 // Start server
 app.listen(PORT, () => {
   console.log(`Server running on http://localhost:${PORT}`);

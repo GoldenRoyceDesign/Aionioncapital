@@ -14,7 +14,7 @@ import VerifyLogin from './components/VerifyLogin';
 import PrivacyPolicy from './pages/PrivacyPolicy';
 import DashboardNavbar from './components/DashboardNavbar'; // New Navbar for Dashboard
 import ProfileForm from './components/ProfileForm';
-// import ProtectedRoute from './components/ProtectedRoute';
+import ProtectedRoute from './components/ProtectedRoute';
 import TermsAndCondition from './pages/TermsAndCondition';
 import RefundCancellation from './pages/RefundCancellation';
 
@@ -27,8 +27,8 @@ function App() {
         <Route path='/AboutUs' element={<AboutUs />} />
         <Route path='/Resources' element={<Resources />} />
         <Route path='/ContactUs' element={<ContactUs />} />
-        {/* <Route path='/Dashboard' element={<ProtectedRoute> <Dashboard /> </ProtectedRoute>} /> */}
-        <Route path='/Dashboard' element={<Dashboard />} />
+        <Route path='/Dashboard' element={<ProtectedRoute> <Dashboard /> </ProtectedRoute>} />
+        <Route path='/Dashboard' element={ <Dashboard /> } />
         <Route path='/ProfileForm' element={<ProfileForm />} />
         <Route path='/LoginPage' element={<LoginPage />} />
         <Route path='/VerifyLogin' element={<VerifyLogin />} />

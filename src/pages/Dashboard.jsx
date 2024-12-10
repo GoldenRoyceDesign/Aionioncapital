@@ -1,8 +1,8 @@
-import React, { useEffect, useRef, useState } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+// import { Link } from 'react-router-dom';
 import profile from '../assets/profile.png';
-import kyc from '../assets/kyc.png';
-import family from '../assets/family.png';
+// import kyc from '../assets/kyc.png';
+// import family from '../assets/family.png';
 import dashboard from '../assets/dashboard.png';
 import box1 from '../assets/EQUITY.png';
 import box2 from '../assets/BONDS.png';
@@ -16,52 +16,32 @@ import logo from '../assets/logo.png';
 import axios from 'axios';
 
 const Dashboard = () => {
-    const [isDropdownVisible, setIsDropdownVisible] = useState(false);
     const [isKycComplete, setIsKycComplete] = useState(false);
     const [loading, setLoading] = useState(true);
-    const dropdownRef = useRef(null);
+    const [userName, setUserName] = useState("");
 
-    const handleButtonClick = () => {
-        setIsDropdownVisible((prev) => !prev);
-    };
-
-    const handleClickOutside = (event) => {
-        if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
-            setIsDropdownVisible(false);
-        }
-    };
-
+    // Fetch KYC status and user name from the API
     useEffect(() => {
-        document.addEventListener('mousedown', handleClickOutside);
-        return () => {
-            document.removeEventListener('mousedown', handleClickOutside);
-        };
-    }, []);
-
-    const handleKycSuccess = () => {
-        setIsKycComplete(true);
-    };
-
-    // Fetch KYC status from the API
-    useEffect(() => {
-        const fetchKycStatus = async () => {
+        const fetchUserData = async () => {
             try {
                 setLoading(true);
-                const response = await axios.get("/api/kyc/status"); // Replace with your API endpoint
-                setIsKycComplete(response.data.kycComplete); // Assuming API response has { kycComplete: true/false }
+                const response = await axios.get("/api/kyc-status"); // Replace with your API endpoint
+                const { name, kycComplete } = response.data;
+                setUserName(name);
+                setIsKycComplete(kycComplete);
             } catch (error) {
-                console.error("Error fetching KYC status:", error);
+                console.error("Error fetching user data:", error);
             } finally {
                 setLoading(false);
             }
         };
 
-        fetchKycStatus();
+        fetchUserData();
     }, []);
 
     // Box data
     const boxes = [
-        { img: box1, label: "EQUITY", link: "trade.aionioncapital.com" },
+        { img: box1, label: "EQUITY", link: "https://trade.aionioncapital.com" },
         { img: box2, label: "BONDS", link: "/Dashboard" },
         { img: box3, label: "INSURANCE", link: "/Dashboard" },
         { img: box4, label: "MUTUAL FUNDS", link: "/Dashboard" },
@@ -80,18 +60,28 @@ const Dashboard = () => {
             <div className='dashboard'>
                 <div className='row'>
                     <div className='col-md-8 mt-5'>
-                        <div className='d-flex justify-content-center align-items-center gap-4'>
+                        <div className='d-flex justify-content-around align-items-center gap-4'>
                             <div className='dashboard-com pe-4 ps-4 pt-1 pb-1'>
-                                <img src={profile} alt='profile' className='img-fluid' />
-                                <Link to='/ProfileForm'>
-                                    <button className='btn'>Complete Profile</button>
-                                </Link>
+                                {/* <img src={profile} alt='profile' className='img-fluid' /> */}
+                                <button className='btn'>Hello, {userName || "User"}</button>
                             </div>
-                            <div className='dashboard-com pe-4 ps-4 pt-1 pb-1 position-relative' ref={dropdownRef}>
+                            <div className='dashboard-com pe-4 ps-4 pt-1 pb-1'>
+                            <img src={profile} alt='profile' className='img-fluid' />
+                                <button className='btn'>
+                                    Status of KYC:{" "}
+                                    <span className={isKycComplete ? "text-success" : "text-danger"}>
+                                        {isKycComplete ? "Complete" : "Not Complete"}
+                                    </span>
+                                </button>
+                            </div>
+                        </div>
+
+
+                        {/* <div className='dashboard-com pe-4 ps-4 pt-1 pb-1 position-relative' ref={dropdownRef}>
                                 <img src={family} alt='profile' className='img-fluid' />
                                 <button className='btn' onClick={handleButtonClick}>
                                     Add Family
-                                    <span className={`dropdown-arrow ${isDropdownVisible ? 'rotate' : ''}`}>&#x25BC;</span>
+                                    <span className={dropdown-arrow ${isDropdownVisible ? 'rotate' : ''}}>&#x25BC;</span>
                                 </button>
                                 {isDropdownVisible && (
                                     <div className='dropdown-menu-custom'>
@@ -105,14 +95,9 @@ const Dashboard = () => {
                                         </ul>
                                     </div>
                                 )}
-                            </div>
-                            <div className='dashboard-com pe-4 ps-4 pt-1 pb-1'>
-                                <img src={kyc} alt='profile' className='img-fluid' />
-                                <a href='ekyc.aionioncapital.com' target='_blank' rel='noopener noreferrer'>
-                                    <button className='btn' onClick={handleKycSuccess}>Complete KYC</button>
-                                </a>
-                            </div>
-                        </div>
+                            </div> */}
+
+
 
                         <div className="boxes mt-4">
                             <div className="row">
@@ -141,10 +126,14 @@ const Dashboard = () => {
                             </div>
                         </div>
                     </div>
-                    <div className='col-md-4 mt-5'>
+                    <div className='col-md-4 mt-5 position-relative'>
                         <h3 style={{ color: '#3B3AF8' }}>Portfolio</h3>
-                        <img src={dashboard} alt='dashboard' className='img-fluid' />
+                        <div className='image-container'>
+                            <img src={dashboard} alt='dashboard' className='img-fluid blurred-image' />
+                            <div className='overlay-text'>Coming Soon</div>
+                        </div>
                     </div>
+
                 </div>
             </div>
 
