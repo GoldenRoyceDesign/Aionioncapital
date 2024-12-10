@@ -20,8 +20,8 @@ const Home = () => {
           <div className='d-flex gap-4 mt-4 btn'>
             {/* <Link to='/Login'>
             <button>Log In </button></Link> */}
-            
-            <button style={{background: 'linear-gradient(to right, #3B3AF8 10%, #232292 100%)', color: 'white'}}>Launching Soon</button>
+
+            <button style={{ background: 'linear-gradient(to right, #3B3AF8 10%, #232292 100%)', color: 'white' }}>Launching Soon</button>
           </div>
 
           <div className='mt-5 d-flex justify-content-center align-items-center'>

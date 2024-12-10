@@ -15,7 +15,7 @@ function ContactUs() {
     };
 
     try {
-      const response = await fetch('http://your-hostinger-server-url/submit', {
+      const response = await fetch('http://localhost:5000/contactForm', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

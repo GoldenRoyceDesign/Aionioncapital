@@ -9,7 +9,19 @@ Home page style
 
 /* Resource page style */
 
+/* Contact page style */
 
+/* Privacy Policy page style */
+
+/* Terms And Condition Page style */
+
+/* Refund Cancellation Page style */
+
+/* Login page style */
+
+/* Dashboard page style */
+
+/* Profile form page style */
 
 
 
@@ -412,6 +424,82 @@ textarea {
   color: #BBB5B5;
 }
 
+
+/* Terms And Condition Page style */
+
+.terms-container {
+  max-width: 800px;
+  margin: 50px auto;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  font-family: 'Arial', sans-serif;
+}
+
+.terms-title {
+  font-size: 24px;
+  font-weight: bold;
+  text-align: center;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+.terms-paragraph {
+  font-size: 16px;
+  line-height: 1.6;
+  color: #555;
+  margin-bottom: 15px;
+  text-align: justify;
+}
+
+/* Refund Cancellation Page style */
+
+.refund-container {
+  max-width: 800px;
+  margin: 50px auto;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  font-family: 'Arial', sans-serif;
+}
+
+.refund-title {
+  font-size: 24px;
+  font-weight: bold;
+  text-align: center;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+.refund-paragraph {
+  font-size: 16px;
+  line-height: 1.6;
+  color: #555;
+  margin-bottom: 15px;
+  text-align: justify;
+}
+
+.refund-subtitle {
+  font-size: 18px;
+  font-weight: bold;
+  margin-top: 20px;
+  margin-bottom: 10px;
+  color: #444;
+}
+
+.refund-note {
+  font-size: 14px;
+  line-height: 1.5;
+  color: #666;
+  margin-top: 20px;
+  text-align: justify;
+}
+
+
 /* Login page style */
 
 .login-page{
@@ -550,3 +638,285 @@ textarea {
 }
 
 
+/* Dashboard page style */
+
+.dashboardNav .search input {
+  border: none;
+  border-radius: 20px;
+}
+
+.dashboardNav .search input:focus{
+  box-shadow: none;
+}
+
+.dashboardNav .search button {
+  border: none;
+}
+
+.dashboardNav .user-info {
+  display: flex;
+  align-items: center;
+}
+
+.dashboardNav .avatar-circle {
+  width: 40px; /* Set width of the avatar circle */
+  height: 40px; /* Set height of the avatar circle */
+  background-color: #007bff; /* Fallback background color for the circle */
+  border-radius: 50%; /* Make it circular */
+  display: flex;
+  justify-content: center; /* Center the image horizontally */
+  align-items: center; /* Center the image vertically */
+  overflow: hidden; /* Hide anything overflowing the circle */
+}
+
+.dashboardNav .avatar-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Ensure image fills the circle */
+  border-radius: 50%; /* Ensure the image is also circular */
+}
+
+.dashboardNav small {
+  margin-left: 10px; /* Add space between avatar and email */
+}
+
+
+.dashboard{
+  max-width: 100vw;
+  overflow: hidden;
+  margin: 20px;
+}
+
+
+.dashboard .dashboard-com{
+  box-sizing: border-box;
+  box-shadow: 2px 2px 2px 0 rgb(0, 0, 0, 0.5);
+  border-radius: 25px;
+}
+
+.dashboard .box{
+  box-sizing: border-box;
+  border: 1px solid #FE667B;
+  border-radius: 20px;
+  box-shadow: 1px 3px 1px 0 rgb(0, 0, 0, 0.5);
+  background: linear-gradient(to bottom, #eec9cd 10%, #FFFFFF 100%);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  height: 160px;
+  width: 180px;
+}
+
+.dashboard .box p{
+  background: #ED5166;
+  width: 100%;
+  margin-top: 10px;
+  height: 50px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size: 12px;
+  color: white;
+}
+
+.dashboard-com {
+  position: relative; /* Needed for positioning the dropdown correctly */
+  text-align: center;
+}
+
+.dashboard-com .dropdown-arrow {
+  transition: transform 0.2s ease; /* Smooth rotation */
+  display: inline-block;
+  font-size: 20px; /* Adjust arrow size */
+}
+
+.dashboard-com .dropdown-arrow.rotate {
+  transform: rotate(180deg); /* Rotates the arrow upwards */
+}
+
+.dashboard-com .dropdown-menu-custom {
+  position: absolute;
+  top: 100%; /* Positions the dropdown below the button */
+  left: 50%;
+  transform: translateX(-50%); /* Centers the dropdown */
+  background-color: white;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
+  padding: 10px;
+  z-index: 1000;
+  min-width: 165px;
+  text-align: left;
+}
+
+.dashboard-com .list-group-item {
+  padding: 2px 8px;
+  cursor: pointer;
+  font-size: 12px;
+  border: none; /* Removes the border for a cleaner look */
+}
+
+.dashboard-com .list-group-item:hover {
+  background-color: #f8f9fa; /* Adds hover effect */
+}
+
+.dashboard-com .btn {
+  border: none;
+  display: inline-block;
+  margin-top: 10px; /* Adds spacing between the button and the dropdown */
+}
+
+
+.dashboard .boxes a{
+  text-decoration: none;
+}
+
+.dashboard .inactive-box {
+  position: relative;
+  pointer-events: none;
+  opacity: 0.6;
+}
+
+.dashboard .lock-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(255, 255, 255, 0.8);
+  color: #787878;
+  font-size: 14px;
+  height: 160px;
+  width: 180px;
+  border-radius: 20px;
+}
+
+.dashboard .lock-icon {
+  font-size: 26px;
+  margin-bottom: 8px;
+}
+
+
+
+
+/* Profile form page style */
+
+.container.profile {
+  margin: 0 auto;
+  padding: 30px;
+  border-radius: 12px;
+}
+
+.container.profile h3 {
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+.container.profile p {
+  font-weight: 600;
+  font-size: 18px;
+}
+
+.container.profile .form-group {
+  margin-bottom: 15px;
+}
+
+.container.profile label.col-form-label {
+  text-align: left;
+  font-weight: 500;
+  padding-right: 10px;
+}
+
+.container.profile input{
+  background: #F5F5F5;
+}
+
+.container.profile .form-control {
+  border-radius: 5px;
+}
+
+.container.profile button.btn-primary {
+  font-size: 16px;
+  padding: 10px;
+  border-radius: 8px;
+  transition: background-color 0.3s;
+  background-color: #3B3AF8;
+}
+
+.container.profile button.btn-primary:hover {
+  background-color: #3B3AF8;
+}
+
+
+/* Custom Toggle Switch */
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 50px;
+  height: 24px;
+}
+
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.profile .form-group .yesno{
+  font-size: 20px;
+}
+
+.profile .slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc; /* Default background for No */
+  transition: 0.4s;
+  border-radius: 34px;
+}
+
+.profile .slider:before {
+  position: absolute;
+  content: "";
+  height: 20px;
+  width: 20px;
+  border-radius: 50%;
+  right: 2px; /* Initially positioned at the right side */
+  bottom: 2px;
+  background-color: white;
+  transition: 0.4s;
+}
+
+.profile input:checked + .slider {
+  background-color: #3B3AF8; /* Green for Yes */
+}
+
+.profile input:checked + .slider:before {
+  transform: translateX(-26px); /* Moves the round slider to the left for Yes */
+  left: 30px; /* Adjust left position when it's checked */
+  right: auto; /* Disable the right positioning when checked */
+}
+
+
+.profile input:not(:checked) + .slider:before {
+  transform: translateX(0); /* Position the round slider to the right for No */
+  left: auto; /* Disable the left positioning when unchecked */
+  right: 4px; /* Position the round slider on the right side by default */
+}
+
+
+
+
+
+footer{
+  background: #e7e8fd;
+}

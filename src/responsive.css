@@ -1,77 +1,94 @@
 @media screen and (min-width: 768px) and (max-width: 1250px) {
-    .home .home-sec {
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-    }
+  .home .home-sec {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
 
-    .home .home-sec img {
-        width: 100vw !important;
-    }
+  .home .home-sec img {
+    width: 100vw !important;
+  }
 
-    .team .team-container {
-        margin: 10px !important;
-    }
+  .team .team-container {
+    margin: 10px !important;
+  }
 
-    .team .team-member{
-        max-width: 100%;
-        overflow: hidden;
-    }
+  .team .team-member {
+    max-width: 100%;
+    overflow: hidden;
+  }
 
-    .email-link {
-        display: inline-block; /* Required for ellipsis to work */
-        max-width: 100%; /* Limit the width of the link */
-        white-space: nowrap; /* Prevent text from wrapping */
-        overflow: hidden; /* Hide overflowed text */
-        text-overflow: ellipsis; /* Add ellipsis to overflowing text */
-        color: #4B4949;
-      }
-      
+  .email-link {
+    display: inline-block;
+    /* Required for ellipsis to work */
+    max-width: 100%;
+    /* Limit the width of the link */
+    white-space: nowrap;
+    /* Prevent text from wrapping */
+    overflow: hidden;
+    /* Hide overflowed text */
+    text-overflow: ellipsis;
+    /* Add ellipsis to overflowing text */
+    color: #4B4949;
+  }
+
+  .profile .form-head{
+    display: flex;
+    flex-direction: column;
+    
+  }
+
+  .profile .form-head .profile-rows{
+    width: 100%;
+  }
+
 }
 
 @media screen and (max-width: 767px) {
 
-    .home h1 {
-        font-size: 40px;
-    }
+  .home h1 {
+    font-size: 40px;
+  }
 
-    .home .center-box .first-container {
-        flex-direction: column;
-    }
+  .home .center-box .first-container {
+    flex-direction: column;
+  }
 
-    .mission-container {
-        flex-direction: column;
-        /* Stack the sides vertically */
-    }
+  .mission-container {
+    flex-direction: column;
+    /* Stack the sides vertically */
+  }
 
-    .mission-left,
-    .mission-right {
-        flex: none;
-        /* Prevents them from stretching unnecessarily */
-        width: 100%;
-        /* Ensures full width for both sides */
-        height: auto;
-        /* Adjusts the height automatically */
-        margin: 0;
-        /* Removes unwanted margin */
-        padding: 10px;
-        /* Adds some padding for content spacing */
-    }
+  .mission-left,
+  .mission-right {
+    flex: none;
+    /* Prevents them from stretching unnecessarily */
+    width: 100%;
+    /* Ensures full width for both sides */
+    height: auto;
+    /* Adjusts the height automatically */
+    margin: 0;
+    /* Removes unwanted margin */
+    padding: 10px;
+    /* Adds some padding for content spacing */
+  }
 
-    .image-container img {
-        max-width: 100%;
-        /* Ensures the image fits within the container */
-        height: auto;
-        /* Adjusts height proportionally */
-    }
+  .image-container img {
+    max-width: 100%;
+    /* Ensures the image fits within the container */
+    height: auto;
+    /* Adjusts height proportionally */
+  }
 
-    .mission-right {
-        padding: 15px;
-        /* Adjusts padding for text readability */
-    }
+  .mission-right {
+    padding: 15px;
+    /* Adjusts padding for text readability */
+  }
 
-    /* Make table rows stack vertically on small screens */
-  .basicdetail table, .basicdetail td, .basicdetail th {
+  /* Make table rows stack vertically on small screens */
+  .basicdetail table,
+  .basicdetail td,
+  .basicdetail th {
     display: block;
     width: 100%;
   }
@@ -110,63 +127,80 @@
     padding: 0 10px;
   }
 
-  .resource{
+  .resource {
     padding: 0 !important;
     margin: 0 !important;
   }
 
-    .contact .row > .col-md-6 {
-        margin-bottom: 15px;
-    }
+  .contact .row>.col-md-6 {
+    margin-bottom: 15px;
+  }
+
+  .profile .profile-rows{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: fit-content;
+  }
 
 }
 
 
 @media screen and (max-width: 400px) {
-    .home h1 {
-        font-size: 25px;
-    }
+  .home h1 {
+    font-size: 25px;
+  }
 
-    .home .btn button {
-        padding: 8px 20px;
-    }
+  .home .btn button {
+    padding: 8px 20px;
+  }
 
-    .about-container {
-        padding: 20px !important;
-    }
+  .about-container {
+    padding: 20px !important;
+  }
 
-    .team .team-container{
-        margin: 10px !important;
-    }
+  .team .team-container {
+    margin: 10px !important;
+  }
 
-    .email-link {
-        display: inline-block; /* Required for ellipsis to work */
-        max-width: 100%; /* Limit the width of the link */
-        white-space: nowrap; /* Prevent text from wrapping */
-        overflow: hidden; /* Hide overflowed text */
-        text-overflow: ellipsis; /* Add ellipsis to overflowing text */
-        color: #4B4949;
-      }
+  .email-link {
+    display: inline-block;
+    /* Required for ellipsis to work */
+    max-width: 100%;
+    /* Limit the width of the link */
+    white-space: nowrap;
+    /* Prevent text from wrapping */
+    overflow: hidden;
+    /* Hide overflowed text */
+    text-overflow: ellipsis;
+    /* Add ellipsis to overflowing text */
+    color: #4B4949;
+  }
 }
 
 
 @media screen and (max-width: 300px) {
-    .team .team-container{
-        margin: 5px !important;
-    }
+  .team .team-container {
+    margin: 5px !important;
+  }
 
-    .team .team-member{
-        max-width: 100%;
-        overflow: hidden;
-    }
+  .team .team-member {
+    max-width: 100%;
+    overflow: hidden;
+  }
 
-    .email-link {
-        display: inline-block; /* Required for ellipsis to work */
-        max-width: 100%; /* Limit the width of the link */
-        white-space: nowrap; /* Prevent text from wrapping */
-        overflow: hidden; /* Hide overflowed text */
-        text-overflow: ellipsis; /* Add ellipsis to overflowing text */
-        color: #4B4949;
-      }
+  .email-link {
+    display: inline-block;
+    /* Required for ellipsis to work */
+    max-width: 100%;
+    /* Limit the width of the link */
+    white-space: nowrap;
+    /* Prevent text from wrapping */
+    overflow: hidden;
+    /* Hide overflowed text */
+    text-overflow: ellipsis;
+    /* Add ellipsis to overflowing text */
+    color: #4B4949;
+  }
 
 }
