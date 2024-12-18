@@ -155,6 +155,9 @@
   }
 
 
+  .quicklink{
+    flex-direction: column;
+  }
 }
 
 
@@ -198,7 +201,7 @@
     width: 300px; /* Card width */
   height: 360px; /* Fixed height */
   }
-  
+
 }
 
 

@@ -47,7 +47,7 @@ function ContactUs() {
 
             <p>Quick Links</p>
 
-            <div className='d-flex gap-5'>
+            <div className='d-flex gap-5 quicklink'>
               <div className='quicklink-box'>
                 <h6>Contact Number</h6>
                 <p><a href='tel:7316350999' style={{ color: '#403F3F', fontWeight: '500', textDecoration: 'none' }}>M: 73163 50999</a></p>
