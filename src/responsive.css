@@ -154,6 +154,11 @@
   height: 360px; /* Fixed height */
   }
 
+  .trade{
+    align-items: center;
+    text-align: center;
+  }
+
 
   .quicklink{
     flex-direction: column;
