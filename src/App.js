@@ -17,6 +17,7 @@ import ProfileForm from './components/ProfileForm';
 import ProtectedRoute from './components/ProtectedRoute';
 import TermsAndCondition from './pages/TermsAndCondition';
 import RefundCancellation from './pages/RefundCancellation';
+import Disclaimer from './pages/Disclaimer';
 
 function App() {
   return (
@@ -28,7 +29,7 @@ function App() {
         <Route path='/Resources' element={<Resources />} />
         <Route path='/ContactUs' element={<ContactUs />} />
         <Route path='/Dashboard' element={<ProtectedRoute> <Dashboard /> </ProtectedRoute>} />
-        <Route path='/Dashboard' element={ <Dashboard /> } />
+        <Route path='/Dashboard' element={<Dashboard />} />
         <Route path='/ProfileForm' element={<ProfileForm />} />
         <Route path='/LoginPage' element={<LoginPage />} />
         <Route path='/VerifyLogin' element={<VerifyLogin />} />
@@ -37,6 +38,7 @@ function App() {
         <Route path='/privacy-policy' element={<PrivacyPolicy />} />
         <Route path='/terms-and-conditions' element={<TermsAndCondition />} />
         <Route path='/refund-cancellation' element={<RefundCancellation />} />
+        <Route path='/disclaimer' element={<Disclaimer />} />
       </Routes>
     </Router>
   );
@@ -54,7 +56,7 @@ function NavbarController() {
 
   return (
     <>
-      {showDashboardNavbar || showProfileNavbar  ? <DashboardNavbar /> : null} {/* Show Dashboard specific navbar */}
+      {showDashboardNavbar || showProfileNavbar ? <DashboardNavbar /> : null} {/* Show Dashboard specific navbar */}
       {showNavbar ? <Navbar /> : null} {/* Show default navbar */}
     </>
   );

@@ -44,8 +44,23 @@ function ContactUs() {
 
           <div className="mt-3">
             <h2>We are here to help you!</h2>
+
+            <p>Quick Links</p>
+
+            <div className='d-flex gap-5'>
+              <div className='quicklink-box'>
+                <h6>Contact Number</h6>
+                <p><a href='tel:7316350999' style={{ color: '#403F3F', fontWeight: '500', textDecoration: 'none' }}>M: 73163 50999</a></p>
+              </div>
+              <div className='quicklink-box'>
+                <h6>Demat Account Opening</h6>
+                <p><a href='mailto: clientcare@aionioncapital.com' style={{ color: '#403F3F', fontWeight: '500', textDecoration: 'none' }}>clientcare@aionioncapital.com</a></p>
+              </div>
+            </div>
+
             <div className="row d-flex justify-content-between align-items-center mt-4">
               <div className="col-md-7">
+              <h2 className='mb-5'>Want to connect with us?</h2>
                 <form onSubmit={handleSubmit}>
                   <div className="row">
                     {/* Left column inputs */}
@@ -89,6 +104,8 @@ function ContactUs() {
                 <div className='mt-5'>
                   <h5 style={{ color: '#3B3AF8' }}>Visit Us</h5>
                   <p><a href='mailto:Email us : contactus@aionioncapital.com' style={{ color: '#403F3F', fontWeight: '500', textDecoration: 'none' }}>Email us : contactus@aionioncapital.com</a></p>
+                  {/* <p><a href='tel:044-46895225' style={{ color: '#403F3F', fontWeight: '500', textDecoration: 'none' }}>Phone number : 044-46895225</a></p>
+                  <p><a href='tel:7316350999' style={{ color: '#403F3F', fontWeight: '500', textDecoration: 'none' }}>Client care : 73163 50999</a></p> */}
                 </div>
               </div>
             </div>
@@ -102,3 +119,4 @@ function ContactUs() {
 }
 
 export default ContactUs;
+

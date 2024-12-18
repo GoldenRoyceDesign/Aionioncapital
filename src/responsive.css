@@ -143,6 +143,18 @@
     width: fit-content;
   }
 
+
+  .card{
+    width: 300px; /* Card width */
+  height: 360px; /* Fixed height */
+  }
+
+  .card .card-detail{
+    width: 300px; /* Card width */
+  height: 360px; /* Fixed height */
+  }
+
+
 }
 
 
@@ -176,6 +188,17 @@
     /* Add ellipsis to overflowing text */
     color: #4B4949;
   }
+
+  .card{
+    width: 300px; /* Card width */
+  height: 360px; /* Fixed height */
+  }
+
+  .card .card-detail{
+    width: 300px; /* Card width */
+  height: 360px; /* Fixed height */
+  }
+  
 }
 
 

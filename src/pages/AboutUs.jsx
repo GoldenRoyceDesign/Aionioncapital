@@ -1,16 +1,17 @@
 import React from 'react'
-import { Carousel } from 'react-bootstrap'
-import about from '../assets/about.png'
-import carousel1 from '../assets/carousel1.png'
-import carousel2 from '../assets/carousel2.png'
-import carousel3 from '../assets/carousel3.png'
+// import { Carousel } from 'react-bootstrap'
+// import about from '../assets/about.png'
+// import carousel1 from '../assets/carousel1.png'
+// import carousel2 from '../assets/carousel2.png'
+// import carousel3 from '../assets/carousel3.png'
 // import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 // import { faLinkedinIn } from '@fortawesome/free-brands-svg-icons'
+import demat from '../assets/Business statistics and financial planning.png'
 
 const AboutUs = () => {
   return (
     <>
-      <section className='about'>
+      {/* <section className='about'>
         <div className='about-head p-4'>
           <h1>Who we are</h1>
         </div>
@@ -80,10 +81,11 @@ const AboutUs = () => {
             </Carousel.Item>
           </Carousel>
         </div>
-      </section>
+      </section> */}
 
       <section className='team mt-5'>
-        <h1 className='text-center' style={{ fontWeight: '600' }}>Meet the Team</h1>
+        <h1 className='text-center' style={{ fontWeight: '600' }}>Meet the People Behind
+        Aionion Capital</h1>
         <div className="team-head m-4 pt-3 text-center">
           <h3 style={{ fontWeight: '600' }}>
             Details of Key Managerial Personnel (KMPs) Including Compliance Officer</h3>
@@ -195,8 +197,10 @@ const AboutUs = () => {
         </div>
       </section>
 
+
+
       <section className='container mt-5 mb-5'>
-        <h2 style={{ color: '#094E8F', fontWeight: '600' }}>Basic Details</h2>
+        <h2 style={{  fontWeight: '600', textAlign: 'center' }}>Basic Details</h2>
 
         <div className='mt-4 basicdetail'>
           <table>
@@ -211,7 +215,7 @@ const AboutUs = () => {
             </tr>
             <tr>
               <td>Mail id</td>
-              <td><a href="mailto:compliance@aionioncapital.com" style={{ color: 'white', textDecoration: 'none' }}>compliance@aionioncapital.com</a></td>
+              <td><a href="mailto:compliance@aionioncapital.com" style={{ color: 'black', textDecoration: 'none' }}>compliance@aionioncapital.com</a></td>
             </tr>
             <tr>
 
@@ -242,15 +246,33 @@ const AboutUs = () => {
               <td>NSE Member Code</td>
               <td>90405</td>
             </tr>
+            <tr>
+              <td>AMFI Registration Number</td>
+              <td>ARN-296313</td>
+            </tr>
           </table>
         </div>
 
-        <h2 className='mt-4 mb-4' style={{ color: '#094E8F', fontWeight: '600' }}>Compliance Information</h2>
+        {/* <h2 className='mt-4 mb-4' style={{ color: '#094E8F', fontWeight: '600' }}>Compliance Information</h2>
         <p>All account information is protected under stringent SEBI regulations to ensure the security and privacy of
-          our investors</p>
+          our investors</p> */}
       </section>
+
+
+      <div className='container p-5'>
+        <div className='row demat p-3'>
+          <div className='col-md-3'>
+            <img src={demat} alt='demat-image' className='img-fluid' />
+          </div>
+          <div className='col-md-7 demat-right'>
+            <p>Step into the future of investing with a Demat account – your gateway to hassle-free trading and secure management of securities.</p>
+            <button>Get Started with Demat</button>
+          </div>
+        </div>
+      </div>
     </>
   )
 }
 
 export default AboutUs
+

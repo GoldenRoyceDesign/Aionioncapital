@@ -38,14 +38,9 @@ const VerifyPage = () => {
         }
     };
 
-    useEffect(() => {
-        if (otp.every((digit) => digit !== "")) {
-            validateOtp();
-        }
-    }, [otp, validateOtp]);
     
 
-    const validateOtp = useCallback (async () => {
+    const validateOtp = useCallback(async () => {
         if (otp.some((digit) => digit === "")) {
             setError("Please enter the full OTP.");
             return;
@@ -73,10 +68,17 @@ const VerifyPage = () => {
         } finally {
             setLoading(false);
         }
+    }, [email, otp]);
+
+
+    useEffect(() => {
+        if (otp.every((digit) => digit !== "")) {
+            validateOtp();
+        }
     }, [otp, validateOtp]);
 
-    
 
+   
     const resendOtp = async () => {
         setLoading(true);
         setError(null);
@@ -158,6 +160,7 @@ const VerifyPage = () => {
                         </div>
                     </div>
 
+
                     <div className='col-md-6 verify-page-right p-5 text-white'>
                         <h2 className='mt-4'>Effortless Access to Your Investments</h2>
                         <p className='mt-4'>
@@ -174,3 +177,4 @@ const VerifyPage = () => {
 };
 
 export default VerifyPage;
+
