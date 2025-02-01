@@ -50,10 +50,10 @@ function ContactUs() {
             <div className='d-flex gap-5 quicklink'>
               <div className='quicklink-box'>
                 <h6>Contact Number</h6>
-                <p><a href='tel:7316350999' style={{ color: '#403F3F', fontWeight: '500', textDecoration: 'none' }}>M: 73163 50999</a></p>
+                <p><a href='tel:07316350999' style={{ color: '#403F3F', fontWeight: '500', textDecoration: 'none' }}>M: 073163 50999</a></p>
               </div>
               <div className='quicklink-box'>
-                <h6>Demat Account Opening</h6>
+                <h6>Reach out to us via email</h6>
                 <p><a href='mailto: clientcare@aionioncapital.com' style={{ color: '#403F3F', fontWeight: '500', textDecoration: 'none' }}>clientcare@aionioncapital.com</a></p>
               </div>
             </div>

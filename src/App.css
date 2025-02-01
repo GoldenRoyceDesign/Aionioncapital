@@ -24,12 +24,18 @@ Home page style
 /* Profile form page style */
 
 
+/* Navigation style */
+.navbar .nav-btn button{
+  background: #0123FF;
+  color: white;
+  border: none;
+  border-radius: 12px;
+}
+
 
 /* Home page style */
 .home {
   min-height: 90vh;
-  background: linear-gradient(to top right,#fedfe4, #FFFFFF, #a6b1ff);
-  text-align: center;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -38,13 +44,13 @@ Home page style
 }
 
 .home h1 {
-  font-weight: 600;
+  font-weight: 500;
   font-size: 45px;
-  background: linear-gradient(to right, #3B3AF8 10%, #232292 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  color: transparent;
+  color: #030504;
+}
+
+.home p{
+  width: 75%;
 }
 
 .home .btn {
@@ -53,21 +59,30 @@ Home page style
 
 .home .btn button {
   padding: 10px 35px;
-  border: 1px solid #3B3AF8;
-  border-radius: 25px;
-  color: #3B3AF8;
-  background: transparent;
+  border: none;
+  color: white;
+  background: #0123FF;
 }
 
 .home .btn button:hover {
-  background: linear-gradient(to bottom, #3B3AF8 0%, #232292 100%);
-  color: white;
+  background-color: white;
+  color: #0123FF;
+}
+
+.market .box{
+  background: #fbfaff;
+  border-radius: 5px;
+  min-height: 300px;
+}
+
+.market .box:hover{
+  border: 2px solid #0123FF;
+  box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.5);
 }
 
 
 .account {
   max-height: 100vh;
-  background: #3B3AF8;
 }
 
 .links {
@@ -149,155 +164,25 @@ Home page style
   }
 }
 
-
-/* General Swiper Slide Styling */
-.swiper-slide {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  transition: transform 0.3s ease, opacity 0.3s ease;
-}
-
-/* Custom Navigation Buttons */
-.carousel .custom-nav {
-  background-color: #6d78ff; /* Background color */
-  color: white; /* Arrow color */
-  border-radius: 50%; /* Makes the button circular */
-  width: 50px; /* Width of the button */
-  height: 50px; /* Height of the button */
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
-  transition: transform 0.3s ease, background-color 0.3s ease;
-}
-
-/* Positioning Navigation Arrows */
-.carousel .swiper-button-prev {
-  left: 20px;
-}
-
-.carousel .swiper-button-next {
-  right: 20px;
-}
-
-/* Navigation Icon */
-.carousel .custom-nav::after {
-  font-size: 18px;
-  font-weight: bold;
-}
-
-/* Hover Effect */
-.carousel .custom-nav:hover {
-  transform: scale(1.1); /* Slightly enlarges on hover */
-  background-color: #a264ff; /* Change background color */
-}
-
-
-
-/* Card Styling for All Slides */
-.card {
-  background-color: white; /* Original color */
-  display: flex;
-  justify-content: end;
-  align-items: end;
-  width: 500px; /* Card width */
-  height: 360px; /* Fixed height */
-}
-
-.card button{
-  width: fit-content;
-  margin-right: 20px;
-  border: 1px solid #b4c0f9;
-  border-radius: 10px;
-  padding: .7rem .5rem;
-  background: white
-}
-
-.card .card-detail{
-  background: linear-gradient(to top, #E4E3FF, #FFFFFF); /* Original color */
-  color: #A4ADBB;
-  padding: 30px;
-  border-radius: 5px;
-  border: 1px solid #b4c0f9;
-  text-align: left;
-  width: 500px; /* Card width */
-  height: 300px; /* Fixed height */
-  transition: all 0.3s ease;
-  transform: scale(0.9); /* Default smaller size */
-}
-
-.card .card-detail h3{
-  color: #000000;
-}
-
-.learn-more .arrow {
-  font-size: 1rem;
-  border: 1px solid #b4c0f9;
-  border-radius: 50%;
-  background: white;
-  color: #004BD2;
-  padding: .2rem 0;
-}
-
-.learn-more .arrow-box{
-  background: linear-gradient(to bottom, #004BD2, #99BBF8);
-}
-
-
-/* Highlight Active Slide */
-.swiper-slide-active .card {
-  opacity: 1; /* Full opacity */
-  background: white; /* Original color */
-  box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.4); /* Enhanced shadow for focus */
-}
-
-
-.swiper-slide-active .card .card-detail{
-  opacity: 1; /* Full opacity */
-  background: linear-gradient(35deg, #3B3AF8, #C6D0FF); /* Original color */
-  box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.4); 
-  color: white;
-}
-
-.swiper-slide-active .card .card-detail h3{
-  color: white;
-}
-
-.trade{
+.trade {
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
-  gap: 20px;
-}
-
-.trade button{
-  background: linear-gradient(to right, #5973EE, #EE8188);
-  border: none;
-  color: white;
-  border-radius: 25px;
-  padding: .5rem 2rem;
-  width: fit-content;
-}
-
-.trade p{
-  color: #3B3AF8;
-}
-
-.trade p .arrow{
-  border-radius: 50%;
-  background: #3B3AF8;
-  color: white;
-  padding: .2rem 0;
+  justify-content: center;
+  gap: 50px;
 }
 
 
-.demat{
-  background: linear-gradient(to right, #b6b6f8, #f9b6c0);
+.trade p {
+  color: #5B5858;
 }
 
-.demat .demat-right{
+
+
+.demat {
+  background: #f3f1fc;
+}
+
+.demat .demat-right {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -305,7 +190,7 @@ Home page style
   text-align: left;
 }
 
-.demat .demat-right button{
+.demat .demat-right button {
   width: fit-content;
   padding: .5rem 2rem;
   color: white;
@@ -314,21 +199,36 @@ Home page style
   font-weight: bold;
 }
 
-.home-invest-sec h2, h6{
-  font-weight: bold;
+.home-invest-sec h2{
+  font-weight: 600;
 }
 
-.home-invest-sec p{
+.home-invest-sec
+h6 {
+  font-weight: 600;
+}
+
+.home-invest-sec p {
   color: #5D6775;
 }
 
-.invest-box{
+.home-invest-left p{
+  font-size: 12px;
+}
+
+.home-invest-left .card {
+  background-color: #EFF2FF;
+  border: 2px solid #dcdff6;
+  height: fit-content;
+}
+
+.invest-box {
   background: #e5e5fd;
   display: flex;
   gap: 20px;
 }
 
-.invest-box .hr{
+.invest-box .hr {
   width: 25px;
   box-sizing: border-box;
   border-radius: 10px;
@@ -358,18 +258,42 @@ Home page style
 .about-head h1 {
   color: #FFFFFF;
   text-align: center;
-
 }
+
 
 .about-container {
-  box-sizing: border-box;
-  background: #333335;
-  color: white;
   text-align: center;
-  width: 80vw;
-  margin: -20px auto 0 auto;
   /* Overlap the about-head section */
 }
+
+
+.about-container h1 {
+  font-weight: 600;
+  font-size: 45px;
+}
+
+.transparency-left .box {
+  width: 60px;
+  height: 60px;
+  transition: background-color 0.5s ease;
+}
+
+.transparency-left h2 {
+  font-size: 1.5rem;
+}
+
+.transparency-left p {
+  font-size: 1rem;
+  color: #333;
+}
+
+.transparency-left .rectangle {
+  width: 8px;
+  height: 80px;
+  box-sizing: border-box;
+  border: 1px solid #787878;
+}
+
 
 /* Carousel style */
 
@@ -441,11 +365,11 @@ Home page style
 }
 
 .team h1 {
-  background: linear-gradient(to right, #1110AE 10%, #FE667C 100%);
+  /* background: linear-gradient(to right, #1110AE 10%, #FE667C 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  background-clip: text;
-  color: transparent;
+  background-clip: text; */
+  color: black;
 }
 
 .team .team-member {
@@ -469,6 +393,7 @@ Home page style
 
 .team .team-member p {
   color: #4B4949;
+  text-align: left !important;
 }
 
 
@@ -550,6 +475,11 @@ td {
 }
 
 
+.calculator{
+  background: #2B4EF4;
+}
+
+
 
 
 /* Contact page style */
@@ -597,7 +527,7 @@ textarea {
   width: fit-content;
 }
 
-.quicklink-box{
+.quicklink-box {
   background-color: #E0E0EC;
   padding: .5rem 2rem;
   text-align: left;

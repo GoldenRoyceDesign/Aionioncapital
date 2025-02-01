@@ -18,6 +18,9 @@ import ProtectedRoute from './components/ProtectedRoute';
 import TermsAndCondition from './pages/TermsAndCondition';
 import RefundCancellation from './pages/RefundCancellation';
 import Disclaimer from './pages/Disclaimer';
+import Calculator from './pages/Calculator';
+import SupportHub from './pages/SupportHub';
+import Footer from './components/Footer';
 
 function App() {
   return (
@@ -39,7 +42,12 @@ function App() {
         <Route path='/terms-and-conditions' element={<TermsAndCondition />} />
         <Route path='/refund-cancellation' element={<RefundCancellation />} />
         <Route path='/disclaimer' element={<Disclaimer />} />
+        <Route path='/calculator' element={<Calculator />} />
+        <Route path='/SupportHub' element={<SupportHub />} />
       </Routes>
+      <div style={{ background: 'linear-gradient(to bottom right, #FFFFFF 15%, #f57d87 50%, #094E8F 100%)', padding: '.6rem 0' }}>
+        <Footer />
+      </div>
     </Router>
   );
 }

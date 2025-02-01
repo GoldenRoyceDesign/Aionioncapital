@@ -1,5 +1,6 @@
 import React from 'react'
 import File from '../components/File'
+import Calculator from './Calculator'
 
 const Resources = () => {
   return (
@@ -7,7 +8,7 @@ const Resources = () => {
 
       <section style={{ background: '#DADAE6' }}>
         <div className='container-fluid mt-3 pt-5 pb-5 links'>
-          <p className='text-white' style={{fontWeight: '700'}}>LINKS TO DOWNDLOAD FORMS</p>
+          <p className='text-white' style={{fontWeight: '700'}}>LINKS TO DOWNLOAD FORMS</p>
           <div className='d-flex'>
             <File />
           </div>
@@ -115,6 +116,48 @@ const Resources = () => {
             </div>
           </div>
         </div>
+
+
+
+        <div className="container-fluid px-0 mt-5 mb-5">
+          <div className="accordion" id="complaintProcedureAccordion" style={{ width: '100%', background: '#DADAE6' }}>
+            <div className="accordion-item" style={{ width: '100%', background: '#DADAE6' }}>
+              <h2 className="accordion-header" id="headingOne">
+                <button
+                  className="accordion-button w-100 d-flex justify-content-between align-items-center"
+                  type="button"
+                  data-bs-toggle="collapse"
+                  data-bs-target="#collapseOne"
+                  aria-expanded="true"
+                  aria-controls="collapseOne"
+                  style={{
+                    width: '100%',
+                    backgroundColor: '#DADAE6',
+                    padding: '10px',
+                    fontWeight: 'bold',
+                    cursor: 'pointer',
+                    display: 'block',
+                    fontSize: '20px'
+                  }}
+                >
+                  Lumpsum Calculator
+
+                </button>
+              </h2>
+
+              <div
+                id="collapseOne"
+                className="accordion-collapse collapse show m-5 p-5 calculator"
+                aria-labelledby="headingOne"
+              >
+                <div className="accordion-body w-100">
+                  <Calculator />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
       </section>
 
     </>

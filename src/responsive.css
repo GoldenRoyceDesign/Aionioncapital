@@ -46,9 +46,31 @@
 
 @media screen and (max-width: 767px) {
 
+  .home , p{
+    text-align: center !important;
+    width: 100% !important;
+  }
+
   .home h1 {
     font-size: 40px;
+    text-align: center !important;
   }
+
+  .home .btn{
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    text-align: center !important;
+  }
+
+  .market h1{
+    text-align: center;
+  }
+
+  .market .box p{
+    text-align: left !important;
+  }
+
 
   .home .center-box .first-container {
     flex-direction: column;
@@ -132,6 +154,11 @@
     margin: 0 !important;
   }
 
+  .calculator{
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+
   .contact .row>.col-md-6 {
     margin-bottom: 15px;
   }
@@ -159,10 +186,42 @@
     text-align: center;
   }
 
+  .trade .stock{
+    flex-direction: column;
+  }
+
+  .account{
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+
+
+  .account .text-primary{
+    text-align: left !important;
+    padding-left: 20px !important;
+  }
+
+  .demat .demat-right{
+    text-align: center !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+  }
+
+  .home-invest-left > .d-flex {
+    justify-content: center;
+  }
 
   .quicklink{
     flex-direction: column;
   }
+
+  .home-invest-sec{
+    text-align: center;
+  }
+
+  
+  
 }
 
 
@@ -205,6 +264,11 @@
   .card .card-detail{
     width: 300px; /* Card width */
   height: 360px; /* Fixed height */
+  }
+
+  .cal-right .cal-doughnut{
+    width: 250px !important;
+    height: 250px !important;
   }
 
 }
